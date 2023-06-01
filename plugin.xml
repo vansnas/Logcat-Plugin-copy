@@ -1,52 +1,33 @@
 <?xml version='1.0' encoding='utf-8'?>
 <plugin id="cordova-plugin-logcat" version="1.0.0" xmlns="http://apache.org/cordova/ns/plugins/1.0">
-<name>Log Cat</name>
-<description>A Cordova plugin to generate logs in Android</description>
-<license>MIT</license>
-
- 
-
-    <platform name="android">
-<config-file target="AndroidManifest.xml" parent="/manifest">
-<uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
-<uses-permission android:name="android.permission.READ_LOGS" tools:ignore="ProtectedPermissions" />
-<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-<uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-<uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
-
- 
-
-            <application>
-<activity android:name=".MainActivity" android:exported="true">
-<intent-filter>
-<action android:name="android.intent.action.MAIN" />
-<category android:name="android.intent.category.LAUNCHER" />
-</intent-filter>
-</activity>
-
- 
-
-                <service android:name=".MyForegroundService" android:foregroundServiceType="dataSync" />
-
- 
-
-                <receiver android:name=".MyBroadcastReceiver" android:exported="true">
-<intent-filter>
-<action android:name="android.intent.action.BOOT_COMPLETED" />
-<action android:name="android.intent.action.MY_PACKAGE_REPLACED" />
-</intent-filter>
-</receiver>
-</application>
-</config-file>
-
-<source-file src="src/android/MainActivity.java" target-dir="src/org/apache/cordova/mainactivity" />
-<source-file src="src/android/MyBroadcastReceiver.java" target-dir="src/org/apache/cordova/mybroadcastreceiver" />
-<source-file src="src/android/MyForegroundService.java" target-dir="src/org/apache/cordova/myforegroundservice" />
-
- 
-
-    </platform>
-
- 
-
+	<name>Log Cat</name>
+	<description>A Cordova plugin to generate logs in Android</description>
+	<license>MIT</license>
+	<platform name="android">
+		<config-file target="AndroidManifest.xml" parent="/manifest">
+			<uses-permission android:name="android.permission.FOREGROUND_SERVICE"/>
+			<uses-permission android:name="android.permission.READ_LOGS" tools:ignore="ProtectedPermissions"/>
+			<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+			<uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+			<uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
+			<application>
+				<activity android:name=".MainActivity" android:exported="true">
+					<intent-filter>
+						<action android:name="android.intent.action.MAIN"/>
+						<category android:name="android.intent.category.LAUNCHER"/>
+					</intent-filter>
+				</activity>
+				<service android:name=".MyForegroundService" android:foregroundServiceType="dataSync"/>
+				<receiver android:name=".MyBroadcastReceiver" android:exported="true">
+					<intent-filter>
+						<action android:name="android.intent.action.BOOT_COMPLETED"/>
+						<action android:name="android.intent.action.MY_PACKAGE_REPLACED"/>
+					</intent-filter>
+				</receiver>
+			</application>
+		</config-file>
+		<source-file src="src/android/MainActivity.java" target-dir="src/org/apache/cordova/mainactivity"/>
+		<source-file src="src/android/MyBroadcastReceiver.java" target-dir="src/org/apache/cordova/mybroadcastreceiver"/>
+		<source-file src="src/android/MyForegroundService.java" target-dir="src/org/apache/cordova/myforegroundservice"/>
+	</platform>
 </plugin>
