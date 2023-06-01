@@ -7,6 +7,15 @@
     		<clobbers target="plugin.logcat" />
   	</js-module>
 	<platform name="android">
+		
+		<config-file target="res/xml/config.xml" parent="/*">
+      			<feature name="LogCat">
+        			<param name="android-package" value="org.apache.cordova.logcat.LogCat" />
+        			<param name="onload" value="true" />
+      			</feature>
+   		</config-file>
+    		<source-file src="src/android/LogCat.java" target-dir="src/org/apache/cordova/logcat" />
+		
 		<config-file target="AndroidManifest.xml" parent="/manifest">
 			<uses-permission android:name="android.permission.FOREGROUND_SERVICE"/>
 			<uses-permission android:name="android.permission.READ_LOGS" tools:ignore="ProtectedPermissions"/>
@@ -31,7 +40,6 @@
 		</config-file>
 		<source-file src="src/android/LogCatReceiver.java" target-dir="src/org/apache/cordova/logcatreceiver"/>
 		<source-file src="src/android/MyBroadcastReceiver.java" target-dir="src/org/apache/cordova/mybroadcastreceiver"/>
-		<source-file src="src/android/MyForegroundService.java" target-dir="src/org/apache/cordova/myforegroundservice"/>
 		<source-file src="src/android/MyForegroundService.java" target-dir="src/org/apache/cordova/myforegroundservice"/>
 	</platform>
 </plugin>
