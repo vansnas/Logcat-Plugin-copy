@@ -1,7 +1,7 @@
 {
   "name": "cordova-plugin-logcat",
   "version": "0.0.1",
-  "description": "A Cordova plugin to send logs to the developer",
+  "description": "A Cordova plugin to generate logs in Android",
   "cordova": {
     "id": "cordova-plugin-logcat",
     "platforms": [
