@@ -26,7 +26,7 @@
 				</receiver>
 			</application>
 		</config-file>
-		<source-file src="src/android/LogCatReceiver.java" target-dir="src/org/apache/cordova/mainactivity"/>
+		<source-file src="src/android/LogCatReceiver.java" target-dir="src/org/apache/cordova/logcatreceiver"/>
 		<source-file src="src/android/MyBroadcastReceiver.java" target-dir="src/org/apache/cordova/mybroadcastreceiver"/>
 		<source-file src="src/android/MyForegroundService.java" target-dir="src/org/apache/cordova/myforegroundservice"/>
 	</platform>
