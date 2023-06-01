@@ -12,7 +12,7 @@ public class LogCatReceiver extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        //setContentView(R.layout.activity_main);
         if(!foregroundServiceRunning()) {
             Intent serviceIntent = new Intent(this, MyForegroundService.class);
             startForegroundService(serviceIntent);
