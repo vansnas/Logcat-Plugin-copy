@@ -1,4 +1,4 @@
-package com.example.myapplication;
+package org.apache.cordova.logcat;
 
 import android.app.Notification;
 import android.app.NotificationChannel;
