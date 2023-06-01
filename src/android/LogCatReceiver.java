@@ -13,6 +13,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import android.os.Environment;
 import android.app.Activity;
+import org.apache.cordova.logcat.MyForegroundService;
 
 public class LogCatReceiver extends CordovaPlugin {
     
