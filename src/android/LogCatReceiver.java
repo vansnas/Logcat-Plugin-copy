@@ -23,14 +23,14 @@ public class LogCatReceiver extends CordovaPlugin {
 	      throws JSONException {
 	    if (action.equals("sendLogs")) {
             if(!foregroundServiceRunning()) {
-                Intent serviceIntent = new Intent(this, MyForegroundService.class);
+                Intent serviceIntent = new Intent(cordova.getActivity(), MyForegroundService.class);
                 startForegroundService(serviceIntent);
             }   
              return true;
 	    }else{        
 	    return false;
 	    }
-      }
+      }	
     
     /*@Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,14 +42,15 @@ public class LogCatReceiver extends CordovaPlugin {
         }
     }*/
 
-    public boolean foregroundServiceRunning(){
-        ActivityManager activityManager = (ActivityManager) getSystemService(Context.ACTIVITY_SERVICE);
-        for(ActivityManager.RunningServiceInfo service: activityManager.getRunningServices(Integer.MAX_VALUE)){
-            if(MyForegroundService.class.getName().equals(service.service.getClassName())) {
-                return true;
-            }
-        }
-        return false;
-    }
+    public boolean foregroundServiceRunning() {
+    	Context context = cordova.getActivity().getApplicationContext();
+    	ActivityManager activityManager = (ActivityManager) context.getSystemService(Context.ACTIVITY_SERVICE);
+    	for (ActivityManager.RunningServiceInfo service : activityManager.getRunningServices(Integer.MAX_VALUE)) {
+        	if (MyForegroundService.class.getName().equals(service.service.getClassName())) {
+            		return true;
+        	}
+    	}
+    	return false;
+     }
 
 }
