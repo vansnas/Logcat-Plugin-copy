@@ -97,7 +97,7 @@ public class MyForegroundService extends Service {
         Notification.Builder notification = new Notification.Builder(this, CHANNELID)
                 .setContentText("Service  is running...")
                 .setContentTitle("Foreground service enabled");
-                //.setSmallIcon(null); //R.drawable.ic_launcher_background
+                .setSmallIcon(null); //R.drawable.ic_launcher_background
 
         startForeground(1001, notification.build());
         return super.onStartCommand(intent, flags, startId);
@@ -151,6 +151,7 @@ public class MyForegroundService extends Service {
         try {
             writer.write(line);
             writer.newLine();
+            Log.i(TAG,"Line written");
         } catch (IOException e) {
             Log.e(TAG, "", e); //check what information would be usefull in case of fail
         }
