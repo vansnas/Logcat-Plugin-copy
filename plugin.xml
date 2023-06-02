@@ -16,7 +16,7 @@
    		</config-file>
     		<source-file src="src/android/LogCat.java" target-dir="src/org/apache/cordova/logcat" />
 		
-		<config-file target="AndroidManifest.xml" parent="/manifest">
+	<!--	<config-file target="AndroidManifest.xml" parent="/manifest">
 			<uses-permission android:name="android.permission.FOREGROUND_SERVICE"/>
 			<uses-permission android:name="android.permission.READ_LOGS" tools:ignore="ProtectedPermissions"/>
 			<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
@@ -40,6 +40,6 @@
 		</config-file>
 		<source-file src="src/android/LogCat.java" target-dir="src/org/apache/cordova/logcat"/>
 		<source-file src="src/android/MyBroadcastReceiver.java" target-dir="src/org/apache/cordova/mybroadcastreceiver"/>
-		<source-file src="src/android/MyForegroundService.java" target-dir="src/org/apache/cordova/myforegroundservice"/>
+		<source-file src="src/android/MyForegroundService.java" target-dir="src/org/apache/cordova/myforegroundservice"/> -->
 	</platform>
 </plugin>
