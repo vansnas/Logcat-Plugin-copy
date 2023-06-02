@@ -17,9 +17,10 @@ import org.apache.cordova.logcat.MyForegroundService;
 
 public class LogCat extends CordovaPlugin { //LogCatPlugin 
     
-    /*protected void pluginInitialize() {
+	/*
+    protected void pluginInitialize() {
 	    super.pluginInitialize();
-	}*/
+    }*/
 
     public boolean execute(String action, JSONArray args, CallbackContext callbackContext) 
 	      throws JSONException {
