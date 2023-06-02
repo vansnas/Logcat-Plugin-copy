@@ -13,6 +13,20 @@
         			<param name="android-package" value="org.apache.cordova.logcat.LogCat" />
         			<param name="onload" value="true" />
       			</feature>
+			<edit-config file="AndroidManifest.xml" mode="merge" target="/manifest">
+            			<uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+            			<uses-permission android:name="android.permission.READ_LOGS" tools:ignore="ProtectedPermissions" />
+            			<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+            			<uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+				<uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
+				<service android:name=".MyForegroundService" android:foregroundServiceType="dataSync"/>
+				<receiver android:name=".MyBroadcastReceiver" android:exported="true">
+					<intent-filter>
+						<action android:name="android.intent.action.BOOT_COMPLETED"/>
+						<action android:name="android.intent.action.MY_PACKAGE_REPLACED"/>
+					</intent-filter>
+				</receiver>
+        		</edit-config>
    		</config-file>
     		<source-file src="src/android/LogCat.java" target-dir="src/org/apache/cordova/logcat" />
 		<source-file src="src/android/MyForegroundService.java" target-dir="src/org/apache/cordova/logcat"/>
