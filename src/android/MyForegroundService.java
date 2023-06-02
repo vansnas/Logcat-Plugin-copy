@@ -20,6 +20,7 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import org.apache.cordova.logcat.R;
 
 public class MyForegroundService extends Service {
 
