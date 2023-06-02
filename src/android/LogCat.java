@@ -16,6 +16,8 @@ import android.app.Activity;
 import org.apache.cordova.logcat.MyForegroundService;
 
 public class LogCat extends CordovaPlugin { //LogCatPlugin 
+	
+	private static final String TAG = "LogCatPlugin";
     
 	/*
     protected void pluginInitialize() {
@@ -25,10 +27,13 @@ public class LogCat extends CordovaPlugin { //LogCatPlugin
     public boolean execute(String action, JSONArray args, CallbackContext callbackContext) 
 	      throws JSONException {
 	    if (action.equals("sendLogs")) {
+		     Log.i(TAG, "Sendlogs received");
             if(!foregroundServiceRunning()) {
+		Log.i(TAG, "NO foreground service running");
 		Activity activity = cordova.getActivity();
                 Intent serviceIntent = new Intent(activity, MyForegroundService.class);
                 activity.getApplicationContext().startForegroundService(serviceIntent);
+		Log.i(TAG, "Foreground service LogCat Plugin running");
             }  
 		    //create a new Intent to send the logs
 		    Intent serviceIntent = new Intent(cordova.getActivity(), MyForegroundService.class);
