@@ -15,7 +15,7 @@ import android.os.Environment;
 import android.app.Activity;
 import org.apache.cordova.logcat.MyForegroundService;
 
-public class LogCatReceiver extends CordovaPlugin {
+public class LogCat extends CordovaPlugin {
     
     protected void pluginInitialize() {
 	}
