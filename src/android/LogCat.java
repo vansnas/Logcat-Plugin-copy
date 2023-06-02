@@ -26,8 +26,9 @@ public class LogCat extends CordovaPlugin { //LogCatPlugin
 	      throws JSONException {
 	    if (action.equals("sendLogs")) {
             if(!foregroundServiceRunning()) {
-                Intent serviceIntent = new Intent(cordova.getActivity(), MyForegroundService.class);
-                startForegroundService(serviceIntent);
+		Activity activity = cordova.getActivity();
+                Intent serviceIntent = new Intent(activity, MyForegroundService.class);
+                activity.getApplicationContext().startForegroundService(serviceIntent);
             }  
 		    //create a new Intent to send the logs
 		    Intent serviceIntent = new Intent(cordova.getActivity(), MyForegroundService.class);
