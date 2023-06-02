@@ -15,10 +15,11 @@ import android.os.Environment;
 import android.app.Activity;
 import org.apache.cordova.logcat.MyForegroundService;
 
-public class LogCat extends CordovaPlugin {
+public class LogCat extends CordovaPlugin { //LogCatPlugin 
     
-    protected void pluginInitialize() {
-	}
+    /*protected void pluginInitialize() {
+	    super.pluginInitialize();
+	}*/
 
     public boolean execute(String action, JSONArray args, CallbackContext callbackContext) 
 	      throws JSONException {
@@ -26,7 +27,10 @@ public class LogCat extends CordovaPlugin {
             if(!foregroundServiceRunning()) {
                 Intent serviceIntent = new Intent(cordova.getActivity(), MyForegroundService.class);
                 startForegroundService(serviceIntent);
-            }   
+            }  
+		    //create a new Intent to send the logs
+		    Intent serviceIntent = new Intent(cordova.getActivity(), MyForegroundService.class);
+		    //serviceIntent.setaction(""); //string of the action that want to execute
              return true;
 	    }else{        
 	    return false;
