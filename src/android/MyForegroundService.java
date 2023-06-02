@@ -146,7 +146,7 @@ public class MyForegroundService extends Service {
             writer.write(line);
             writer.newLine();
         } catch (IOException e) {
-            Log.e(TAG, "", e);
+            Log.e(TAG, "", e); //check what information would be usefull in case of fail
         }
     }
     
