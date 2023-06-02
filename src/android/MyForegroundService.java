@@ -49,13 +49,14 @@ public class MyForegroundService extends Service {
                                         process = startLogcatProcess();
                                         reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
                                     }
-
+                                    //create a method to create these 2 lines and deal with the exception in case of a fail
                                     logFile = generateLogFile();
                                     writer = new BufferedWriter(new FileWriter(logFile));
 
                                     String line;
                                     int countLines = 0;
-
+                                    
+                                    //try catch around these while loop, error failed to read the logcat and write it down to the file
                                     while ((line = reader.readLine()) != null) {
 
                                         if (!isCurrentLogFile(logFile)) {
@@ -74,6 +75,7 @@ public class MyForegroundService extends Service {
                                     }
 
                                 }
+                                //remove these catch, shouldn't be here
                             } catch (IOException e) {
                                 Log.e(TAG, "", e);
                             }
@@ -106,7 +108,8 @@ public class MyForegroundService extends Service {
         return null;
     }
 
-    public String createFileName(){
+    //explain why these 2 actions createfilename and iscurrentlogfile meet the requirements
+    public String createFileName(){ //comment these code
 
         String filename = "logcat_" + LocalDate.now() + ".txt";
 
@@ -119,6 +122,12 @@ public class MyForegroundService extends Service {
         return filename;
     }
 
+    private boolean isCurrentLogFile(File logFile) {
+        
+        //checks if the file has the system date in the file name (comment why this happens)
+        return logFile.getName().contains(LocalDate.now().toString());
+    }
+    
     public File generateLogFile(){
         return new File(getFilesDir(), createFileName());
     }
@@ -135,10 +144,6 @@ public class MyForegroundService extends Service {
 
     private boolean isProcessAlive(Process process) {
         return process != null && process.isAlive();
-    }
-
-    private boolean isCurrentLogFile(File logFile) {
-        return logFile.getName().contains(LocalDate.now().toString());
     }
 
     private void writeLineToLog(String line, BufferedWriter writer){
