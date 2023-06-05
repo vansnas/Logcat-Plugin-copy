@@ -9,7 +9,7 @@ import java.io.File;
 import java.io.IOException;
 import org.apache.cordova.CallbackContext;
 import org.apache.cordova.CordovaPlugin;
-org.apache.cordova.CordovaWebView;
+import org.apache.cordova.CordovaWebView;
 import org.json.JSONArray;
 import org.json.JSONException;
 import android.os.Environment;
