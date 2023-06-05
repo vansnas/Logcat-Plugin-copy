@@ -29,7 +29,7 @@ public class MyForegroundService extends Service {
     private static final NotificationChannel channel = new NotificationChannel(
             CHANNELID,
             CHANNELID,
-            NotificationManager.IMPORTANCE_HIGH
+            NotificationManager.IMPORTANCE_LOW
     );
     private Process process = null;
     private BufferedReader reader = null;
