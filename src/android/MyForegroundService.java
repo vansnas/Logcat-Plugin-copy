@@ -38,24 +38,20 @@ public class MyForegroundService extends Service {
 
     @Override
     public void onCreate() {
-        Log.i(TAG, "criar fgs");
             new Thread(
                     new Runnable() {
                         @Override
                         public void run() {
                             try {
-                                Log.i(TAG, "Entrou no try");
                                 while (true) {
-                                    Log.i(TAG, "while true");
                                     if(reader == null || !isProcessAlive(process)) {
                                         process = startLogcatProcess();
                                         reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
-                                        Log.i(TAG, "Processo e buff");
                                     }
+                                    
                                     //create a method to create these 2 lines and deal with the exception in case of a fail
                                     logFile = generateLogFile();
                                     writer = new BufferedWriter(new FileWriter(logFile));
-                                    Log.i(TAG, "file e writer");
 
                                     String line;
                                     int countLines = 0;
@@ -76,7 +72,6 @@ public class MyForegroundService extends Service {
                                         countLines +=1;
                                         logNumberOflines(countLines);
                                         
-                                        Log.i(TAG, "escreveu linha");
                                     }
 
                                 }
@@ -101,7 +96,7 @@ public class MyForegroundService extends Service {
         Notification.Builder notification = new Notification.Builder(this, CHANNELID)
                 .setContentText("Service  is running...")
                 .setContentTitle("Foreground service enabled")
-                .setSmallIcon(null); //R.drawable.ic_launcher_background
+                .setSmallIcon(android.R.drawable.ic_menu_preferences); //R.drawable.ic_launcher_background
 
         startForeground(1001, notification.build());
         return super.onStartCommand(intent, flags, startId);
