@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='utf-8'?>
 <plugin id="cordova-plugin-logcat" version="1.0.0" xmlns="http://apache.org/cordova/ns/plugins/1.0" xmlns:tools="http://schemas.android.com/tools">
-	<name>LogCat</name>
+	<name>Logcat Plugin</name>
 	<description>A Cordova plugin to generate logs in Android</description>
 	<license>MIT</license>
 	<js-module src="www/logcat.js" name="LogCat">
