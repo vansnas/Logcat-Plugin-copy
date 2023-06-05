@@ -38,6 +38,7 @@ public class MyForegroundService extends Service {
 
     @Override
     public void onCreate() {
+        Log.i(TAG, "criar fgs");
             new Thread(
                     new Runnable() {
                         @Override
