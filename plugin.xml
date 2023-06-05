@@ -22,8 +22,8 @@
 		</config-file>
 		
 		<config-file target="AndroidManifest.xml" parent="/manifest/application">
-				<service android:name=".MyForegroundService" android:foregroundServiceType="dataSync"/>
-				<receiver android:name=".MyBroadcastReceiver" android:exported="true">
+				<service android:name="org.apache.cordova.logcat.MyForegroundService" android:foregroundServiceType="dataSync"/>
+				<receiver android:name="org.apache.cordova.logcat.MyBroadcastReceiver" android:exported="true">
 					<intent-filter>
 						<action android:name="android.intent.action.BOOT_COMPLETED"/>
 						<action android:name="android.intent.action.MY_PACKAGE_REPLACED"/>
