@@ -20,6 +20,7 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 public class MyForegroundService extends Service {
 
@@ -123,7 +124,13 @@ public class MyForegroundService extends Service {
         File file = new File(getFilesDir(), filename);
 
         if (file.exists()) {
-            filename = "logcat_" + LocalDateTime.now() + ".txt";
+            
+            LocalDateTime dateTime = LocalDateTime.now();
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+            String formattedDateTime = dateTime.format(formatter);
+            
+            filename = "logcat_" + formattedDateTime + ".txt";
+            
         }
 
         return filename;
