@@ -13,14 +13,11 @@ import androidx.annotation.Nullable;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileDescriptor;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.io.PrintWriter;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-//import org.apache.cordova.logcat.R;
 
 public class MyForegroundService extends Service {
 
@@ -38,50 +35,61 @@ public class MyForegroundService extends Service {
 
     @Override
     public void onCreate() {
-            new Thread(
-                    new Runnable() {
-                        @Override
-                        public void run() {
-                            try {
-                                while (true) {
-                                    if(reader == null || !isProcessAlive(process)) {
-                                        process = startLogcatProcess();
-                                        reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
-                                    }
-                                    
-                                    //create a method to create these 2 lines and deal with the exception in case of a fail
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    while (true) {
+                        if (reader == null || !isProcessAlive(process)) {
+                            process = startLogcatProcess();
+                            reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
+                        }
+
+                        logFile = generateLogFile();
+                        writer = new BufferedWriter(new FileWriter(logFile));
+
+                        String line;
+                        int countLines = 0;
+
+                        try {
+                            while ((line = reader.readLine()) != null) {
+                                if (!isCurrentLogFile(logFile)) {
+                                    writer.close();
                                     logFile = generateLogFile();
                                     writer = new BufferedWriter(new FileWriter(logFile));
-
-                                    String line;
-                                    int countLines = 0;
-                                    
-                                    //try catch around these while loop, error failed to read the logcat and write it down to the file
-                                    while ((line = reader.readLine()) != null) {
-
-                                        if (!isCurrentLogFile(logFile)) {
-                                            writer.close();
-                                            logFile = generateLogFile();
-                                            writer = new BufferedWriter(new FileWriter(logFile));
-                                            Log.i(TAG,"New Logfile Created");
-                                        }
-
-                                        writeLineToLog(line, writer);
-                                        writer.flush();
-
-                                        countLines +=1;
-                                        logNumberOflines(countLines);
-                                        
-                                    }
-
+                                    Log.i(TAG, "New Logfile Created");
                                 }
-                                //remove these catch, shouldn't be here
-                            } catch (IOException e) {
-                                Log.e(TAG, "", e);
+
+                                writeLineToLog(line, writer);
+                                writer.flush();
+
+                                countLines += 1;
+                                logNumberOflines(countLines);
                             }
+                        } catch (IOException e) {
+                            Log.e(TAG, "Failed to read logcat or write to file", e);
                         }
                     }
-            ).start();
+                } catch (IOException e) {
+                    Log.e(TAG, "Error starting logcat process", e);
+                } finally {
+                    if (reader != null) {
+                        try {
+                            reader.close();
+                        } catch (IOException e) {
+                            Log.e(TAG, "Failed to close reader", e);
+                        }
+                    }
+                    if (writer != null) {
+                        try {
+                            writer.close();
+                        } catch (IOException e) {
+                            Log.e(TAG, "Failed to close writer", e);
+                        }
+                    }
+                }
+            }
+        }).start();
         super.onCreate();
     }
 
@@ -94,9 +102,9 @@ public class MyForegroundService extends Service {
     public int onStartCommand(Intent intent, int flags, int startId) {
         getSystemService(NotificationManager.class).createNotificationChannel(channel);
         Notification.Builder notification = new Notification.Builder(this, CHANNELID)
-                .setContentText("Service  is running...")
+                .setContentText("Service is running...")
                 .setContentTitle("Foreground service enabled")
-                .setSmallIcon(android.R.drawable.ic_menu_preferences); //R.drawable.ic_launcher_background android.R.drawable.ic_menu_preferences
+                .setSmallIcon(android.R.drawable.ic_menu_preferences);
 
         startForeground(1001, notification.build());
         return super.onStartCommand(intent, flags, startId);
@@ -108,52 +116,45 @@ public class MyForegroundService extends Service {
         return null;
     }
 
-    //explain why these 2 actions createfilename and iscurrentlogfile meet the requirements
-    public String createFileName(){ //comment these code
-
+    public String createFileName() throws IOException {
         String filename = "logcat_" + LocalDate.now() + ".txt";
-
         File file = new File(getFilesDir(), filename);
 
         if (file.exists()) {
-            filename = "logcat" + LocalDateTime.now() + ".txt";
+            filename = "logcat_" + LocalDateTime.now() + ".txt";
         }
 
         return filename;
     }
 
     private boolean isCurrentLogFile(File logFile) {
-        
-        //checks if the file has the system date in the file name (comment why this happens)
         return logFile.getName().contains(LocalDate.now().toString());
     }
-    
-    public File generateLogFile(){
+
+    public File generateLogFile() throws IOException {
         return new File(getFilesDir(), createFileName());
     }
 
-    public void logNumberOflines(Integer countLines){
-        if(countLines % 100 == 0){
-            Log.i(TAG,countLines + " number of lines written");
+    public void logNumberOflines(Integer countLines) {
+        if (countLines % 100 == 0) {
+            Log.i(TAG, countLines + " number of lines written");
         }
     }
 
-    private Process startLogcatProcess() throws IOException{
-            return Runtime.getRuntime().exec("logcat");
+    private Process startLogcatProcess() throws IOException {
+        return Runtime.getRuntime().exec("logcat");
     }
 
     private boolean isProcessAlive(Process process) {
         return process != null && process.isAlive();
     }
 
-    private void writeLineToLog(String line, BufferedWriter writer){
+    private void writeLineToLog(String line, BufferedWriter writer) {
         try {
             writer.write(line);
             writer.newLine();
-            Log.i(TAG,"Line written");
         } catch (IOException e) {
-            Log.e(TAG, "", e); //check what information would be usefull in case of fail
+            Log.e(TAG, "Failed to write line to log", e);
         }
     }
-    
 }
