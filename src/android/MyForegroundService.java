@@ -58,7 +58,12 @@ public class MyForegroundService extends Service {
                         int countLines = 0;
 
                         try {
+                            
+                            //Verifies if the line has a log
                             while ((line = reader.readLine()) != null) {
+                                
+                                //Checks if the log file is the required one. 
+                                //If it's not the same day, closes the current writer, creates a new log file and initializes a new writer 
                                 if (!isCurrentLogFile(logFile)) {
                                     writer.close();
                                     logFile = generateLogFile();
@@ -72,6 +77,7 @@ public class MyForegroundService extends Service {
                                 countLines += 1;
                                 logNumberOflines(countLines);
                             }
+                            
                         } catch (IOException e) {
                             Log.e(TAG, "Failed to read logcat or write to file", e);
                         }
