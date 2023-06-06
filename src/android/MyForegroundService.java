@@ -119,6 +119,8 @@ public class MyForegroundService extends Service {
         return null;
     }
 
+    //Creates the file name with the current date.
+    //If there is already a file with that name, the filename will include date and time.
     public String createFileName() throws IOException {
         String filename = "logcat_" + LocalDate.now() + ".txt";
         File file = new File(getFilesDir(), filename);
@@ -135,7 +137,7 @@ public class MyForegroundService extends Service {
 
         return filename;
     }
-
+    
     private boolean isCurrentLogFile(File logFile) {
         return logFile.getName().contains(LocalDate.now().toString());
     }
@@ -144,6 +146,7 @@ public class MyForegroundService extends Service {
         return new File(getFilesDir(), createFileName());
     }
 
+    //
     public void logNumberOflines(Integer countLines) {
         if (countLines % 100 == 0) {
             Log.i(TAG, countLines + " number of lines written");
@@ -162,9 +165,8 @@ public class MyForegroundService extends Service {
         try {
             writer.write(line);
             writer.newLine();
-            Log.i(TAG, "Line written");
         } catch (IOException e) {
-            Log.e(TAG, "Failed to write line to log", e);
+            Log.e(TAG, "Failed to write line to log: " + line, e);
         }
     }
 }
