@@ -42,6 +42,7 @@ public class LogCat extends CordovaPlugin { //LogCatPlugin
 
     }
 
+    //Checks if the foreground service is running
     public boolean foregroundServiceRunning() {
         Context context = cordova.getActivity().getApplicationContext();
         ActivityManager activityManager = (ActivityManager) context.getSystemService(Context.ACTIVITY_SERVICE);
