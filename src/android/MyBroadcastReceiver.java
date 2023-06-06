@@ -12,7 +12,7 @@ public class MyBroadcastReceiver extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
         Log.i(TAG, "onReceive: action=" + intent.getAction());
-        if(intent.getAction().equals(Intent.ACTION_BOOT_COMPLETED) || Intent.ACTION_MY_PACKAGE_REPLACED.equals(intent.getAction())) {
+        if(intent.getAction().equals(Intent.ACTION_BOOT_COMPLETED) || intent.getAction().equals(Intent.ACTION_MY_PACKAGE_REPLACED)) {
             Intent serviceIntent = new Intent(context, MyForegroundService.class);
             context.startForegroundService(serviceIntent);
         }
