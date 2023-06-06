@@ -43,11 +43,14 @@ public class MyForegroundService extends Service {
             public void run() {
                 try {
                     while (true) {
+                        
+                        //Checks if the logcat process is alive. If not, will start it and the respective reader
                         if (reader == null || !isProcessAlive(process)) {
                             process = startLogcatProcess();
                             reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
                         }
 
+                        //Create the log file and initializes the writer
                         logFile = generateLogFile();
                         writer = new BufferedWriter(new FileWriter(logFile));
 
@@ -138,6 +141,7 @@ public class MyForegroundService extends Service {
         return filename;
     }
     
+    //Checks if the log file name contains the current date
     private boolean isCurrentLogFile(File logFile) {
         return logFile.getName().contains(LocalDate.now().toString());
     }
@@ -146,7 +150,7 @@ public class MyForegroundService extends Service {
         return new File(getFilesDir(), createFileName());
     }
 
-    //
+    //After every 100 lines, the count of lines written to the log file will be logged.
     public void logNumberOflines(Integer countLines) {
         if (countLines % 100 == 0) {
             Log.i(TAG, countLines + " number of lines written");
@@ -161,6 +165,7 @@ public class MyForegroundService extends Service {
         return process != null && process.isAlive();
     }
 
+    //Writes the log to the file
     private void writeLineToLog(String line, BufferedWriter writer) {
         try {
             writer.write(line);
