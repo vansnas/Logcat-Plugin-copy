@@ -1,4 +1,3 @@
-package org.apache.cordova.logcat;
 
 import android.app.ActivityManager;
 import android.content.Context;
@@ -20,46 +19,28 @@ import android.util.Log;
 public class LogCat extends CordovaPlugin { //LogCatPlugin 
 	
 	private static final String TAG = "LogCatPlugin";
-    
-	/*
-    protected void pluginInitialize() {
-	    super.pluginInitialize();
-    }*/
 
-    	public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
+    public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
 	    if (action.equals("sendLogs")) {
-		Log.i(TAG, "Sendlogs received");
-            	if(!foregroundServiceRunning()) {
+            if(!foregroundServiceRunning()) {
 			
-			Log.i(TAG, "NO foreground service running");
+				Activity activity = cordova.getActivity();
+                Intent serviceIntent = new Intent(activity, MyForegroundService.class);
+                activity.getApplicationContext().startForegroundService(serviceIntent);
 			
-			Activity activity = cordova.getActivity();
-                	Intent serviceIntent = new Intent(activity, MyForegroundService.class);
-                	activity.getApplicationContext().startForegroundService(serviceIntent);
-			
-			Log.i(TAG, "Foreground service LogCat Plugin running");
-            	}  
+            }  
 		    
 		//create a new Intent to send the logs
 		    
 		//Intent serviceIntent = new Intent(cordova.getActivity(), MyForegroundService.class);
 		//serviceIntent.setaction(""); //string of the action that want to execute
-             	return true;
+             return true;
 		    
 	    } else {        
 	    	return false;
 	    }
-      	}	
-    
-    /*@Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        //setContentView(R.layout.activity_main);
-        if(!foregroundServiceRunning()) {
-            Intent serviceIntent = new Intent(this, MyForegroundService.class);
-            startForegroundService(serviceIntent);
-        }
-    }*/
+		
+    }	
 
     public boolean foregroundServiceRunning() {
     	Context context = cordova.getActivity().getApplicationContext();
@@ -70,6 +51,6 @@ public class LogCat extends CordovaPlugin { //LogCatPlugin
         	}
     	}
     	return false;
-     }
+    }
 
 }
