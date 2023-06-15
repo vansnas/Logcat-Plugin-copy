@@ -129,10 +129,9 @@ public class MyForegroundService extends Service {
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
             String formattedDateTime = dateTime.format(formatter);
 
-            filename = "logcat_" + formattedDateTime + ".txt";
+            filename = "logcat_" + LocalDateTime.now() + ".txt";
 
         }
-
         return filename;
     }
 
