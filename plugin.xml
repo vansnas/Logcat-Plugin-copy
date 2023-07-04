@@ -31,7 +31,7 @@
 						<action android:name="android.intent.action.MY_PACKAGE_REPLACED"/>
 					</intent-filter>
 				</receiver>
-			        <receiver android:name=".OldFilesTimes" android:exported="true">
+			        <receiver android:name="org.apache.cordova.logcat.OldFilesTimes" android:exported="true">
             				<intent-filter>
                 				<action android:name="android.intent.action.DATE_CHANGED" />
             				</intent-filter>
@@ -41,6 +41,6 @@
 		<source-file src="src/android/LogCat.java" target-dir="src/org/apache/cordova/logcat"/>
 		<source-file src="src/android/MyForegroundService.java" target-dir="src/org/apache/cordova/logcat"/>
 		<source-file src="src/android/MyBroadcastReceiver.java" target-dir="src/org/apache/cordova/logcat"/>
-		<source-file src="src/android/OldTimesFile.java" target-dir="src/org/apache/cordova/logcat"/>
+		<source-file src="src/android/OldFilesTimes.java" target-dir="src/org/apache/cordova/logcat"/>
 	</platform>
 </plugin>
