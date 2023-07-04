@@ -1,4 +1,4 @@
-package com.example.mytestlogcat;
+package org.apache.cordova.logcat;
 
 import android.util.Log;
 
