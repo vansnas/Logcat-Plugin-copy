@@ -8,7 +8,6 @@
 	</js-module>
 	<platform name="android">
 		
-		<dependency id="androidx.appcompat.appcompat" version="1.6.1" />
     		<dependency id="com.google.android.material.material" version="1.5.0" />
     		<dependency id="androidx.constraintlayout.constraintlayout" version="2.1.4" />
     		<dependency id="com.azure.azure-storage-blob" version="12.15.0" />
