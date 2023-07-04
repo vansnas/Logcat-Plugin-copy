@@ -19,10 +19,8 @@
   		<framework src="com.squareup.okhttp3:okhttp:4.9.1"/>
   		<framework src="com.google.code.gson:gson:2.8.8"/>
 
-		<resource-file src="META-INF/INDEX.LIST" target="META-INF" exclude="true" />
-  		<resource-file src="META-INF/AL2.0" target="META-INF" exclude="true" />
-  		<resource-file src="META-INF/LGPL2.1" target="META-INF" exclude="true" />
-  		<resource-file src="META-INF/io.netty.versions.properties" target="META-INF" exclude="true" />
+		<framework src="src/android/logcat-gradle.gradle" custom="true" type="gradleReference" />
+        	<lib-file src="src/android/logcat-gradle.aar" target="libs/logcat-gradle.aar" />
 	
 		<config-file target="res/xml/config.xml" parent="/*">
 			<feature name="LogCat">
