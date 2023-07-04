@@ -12,6 +12,9 @@
     "type": "git",
     "url": "git+https://github.com/afonso-rocha/Logcat-Plugin.git"
   },
+  "dependencies": {
+    "p-map": "^2.0.0"
+  },
   "keywords": [
     "ecosystem:cordova",
     "cordova-android"
