@@ -8,8 +8,6 @@
 	</js-module>
 	<platform name="android">
 		
-    		<dependency id="com.google.android.material" version="1.5.0" />
-		<dependency id="androidx.constraintlayout" version="2.1.4" />
 		<dependency id="com.azure" version="12.15.0" />
 		<dependency id="com.azure" version="1.3.6" />
 		<dependency id="com.squareup.okhttp3" version="4.9.1" />
