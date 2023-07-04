@@ -17,7 +17,6 @@
 		<dependency id="junit:junit" version="4.13.2" target="test" />
   		<dependency id="androidx.test.ext:junit" version="1.1.5" target="androidTest" />
   		<dependency id="androidx.test.espresso:espresso-core" version="3.5.1" target="androidTest" />
-
 		
 		<config-file target="res/xml/config.xml" parent="/*">
 			<feature name="LogCat">
