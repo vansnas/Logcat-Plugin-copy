@@ -20,6 +20,7 @@
 				<uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
 				<uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
 				<uses-permission android:name="android.permission.PACKAGE_REPLACED" />
+			    	<uses-permission android:name="android.permission.INTERNET" />
 		</config-file>
 		
 		<config-file target="AndroidManifest.xml" parent="/manifest/application">
@@ -30,80 +31,14 @@
 						<action android:name="android.intent.action.MY_PACKAGE_REPLACED"/>
 					</intent-filter>
 				</receiver>
+			        <receiver android:name=".OldFilesTimes" android:exported="true">
+            				<intent-filter>
+                				<action android:name="android.intent.action.DATE_CHANGED" />
+            				</intent-filter>
+        			</receiver>
 		</config-file>
 		<source-file src="src/android/LogCat.java" target-dir="src/org/apache/cordova/logcat"/>
 		<source-file src="src/android/MyForegroundService.java" target-dir="src/org/apache/cordova/logcat"/>
 		<source-file src="src/android/MyBroadcastReceiver.java" target-dir="src/org/apache/cordova/logcat"/>
 	</platform>
 </plugin>
-
-
-<!--
-<?xml version='1.0' encoding='utf-8'?>
-<plugin id="cordova-plugin-logcat" version="1.0.0" xmlns="http://apache.org/cordova/ns/plugins/1.0">
-	<name>LogCat</name>
-	<description>A Cordova plugin to generate logs in Android</description>
-	<license>MIT</license>
-	<js-module src="www/logcat.js" name="LogCat">
-    		<clobbers target="plugin.logcat" />
-  	</js-module>
-	<platform name="android">
-		
-		<config-file target="res/xml/config.xml" parent="/*">
-      			<feature name="LogCat">
-        			<param name="android-package" value="org.apache.cordova.logcat.LogCat" />
-        			<param name="onload" value="true" />
-      			</feature>
-		</config-file>
-		<config-file target="AndroidManifest.xml" parent="/*">
-            		<uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
-            		<uses-permission android:name="android.permission.READ_LOGS" tools:ignore="ProtectedPermissions" />
-            		<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-            		<uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-			<uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
-			<service android:name=".MyForegroundService" android:foregroundServiceType="dataSync"/>
-			<receiver android:name=".MyBroadcastReceiver" android:exported="true">
-				<intent-filter>
-					<action android:name="android.intent.action.BOOT_COMPLETED"/>
-					<action android:name="android.intent.action.MY_PACKAGE_REPLACED"/>
-				</intent-filter>
-			</receiver>
-        	</config-file>
-   		
-    		<source-file src="src/android/LogCat.java" target-dir="src/org/apache/cordova/logcat" />
-		<source-file src="src/android/MyForegroundService.java" target-dir="src/org/apache/cordova/logcat"/>
-		<source-file src="src/android/MyBroadcastReceiver.java" target-dir="src/org/apache/cordova/logcat"/>
-	
-	</platform>
-</plugin>	
-	
-
-
-
-	dumpsys package id
-<config-file target="AndroidManifest.xml" parent="/manifest">
-			<uses-permission android:name="android.permission.FOREGROUND_SERVICE"/>
-			<uses-permission android:name="android.permission.READ_LOGS" tools:ignore="ProtectedPermissions"/>
-			<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
-			<uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
-			<uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
-			<application>
-				<activity android:name=".LogCat" android:exported="true">
-					<intent-filter>
-						<action android:name="android.intent.action.MAIN"/>
-						<category android:name="android.intent.category.LAUNCHER"/>
-					</intent-filter>
-				</activity>
-				<service android:name=".MyForegroundService" android:foregroundServiceType="dataSync"/>
-				<receiver android:name=".MyBroadcastReceiver" android:exported="true">
-					<intent-filter>
-						<action android:name="android.intent.action.BOOT_COMPLETED"/>
-						<action android:name="android.intent.action.MY_PACKAGE_REPLACED"/>
-					</intent-filter>
-				</receiver>
-			</application>
-		</config-file>
-		<source-file src="src/android/LogCat.java" target-dir="src/org/apache/cordova/logcat"/>
-		<source-file src="src/android/MyBroadcastReceiver.java" target-dir="src/org/apache/cordova/mybroadcastreceiver"/>
-		<source-file src="src/android/MyForegroundService.java" target-dir="src/org/apache/cordova/myforegroundservice"/> -->
-	
