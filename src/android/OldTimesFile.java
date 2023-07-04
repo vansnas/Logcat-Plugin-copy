@@ -1,3 +1,5 @@
+package org.apache.cordova.logcat;
+
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
