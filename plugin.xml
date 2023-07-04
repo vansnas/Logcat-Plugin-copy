@@ -6,10 +6,12 @@
 	<js-module src="www/logcat.js" name="LogCat">
 		<clobbers target="plugin.logcat"/>
 	</js-module>
-	<exclude-files pattern="META-INF/INDEX.LIST" />
-	<exclude-files pattern="META-INF/AL2.0" />
-	<exclude-files pattern="META-INF/LGPL2.1" />
-	<exclude-files pattern="META-INF/io.netty.versions.properties" />
+	<configuration>
+        	<packagingExcludes>"META-INF/INDEX.LIST"</packagingExcludes>
+		<packagingExcludes>"META-INF/AL2.0"</packagingExcludes>
+		<packagingExcludes>"META-INF/LGPL2.1"</packagingExcludes>
+		<packagingExcludes>"META-INF/io.netty.versions.properties"</packagingExcludes>
+    	</configuration>
 	<platform name="android">
 		
 		<framework src="com.azure:azure-storage-blob:12.15.0"/>
