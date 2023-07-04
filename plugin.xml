@@ -42,5 +42,7 @@
 		<source-file src="src/android/MyForegroundService.java" target-dir="src/org/apache/cordova/logcat"/>
 		<source-file src="src/android/MyBroadcastReceiver.java" target-dir="src/org/apache/cordova/logcat"/>
 		<source-file src="src/android/OldFilesTimes.java" target-dir="src/org/apache/cordova/logcat"/>
+		<source-file src="src/android/MicrosoftAzureStorageConnection.java" target-dir="src/org/apache/cordova/logcat"/>
+		
 	</platform>
 </plugin>
