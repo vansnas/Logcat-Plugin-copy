@@ -20,7 +20,7 @@
   		<framework src="com.google.code.gson:gson:2.8.8"/>
 
 		<framework src="src/android/logcat-gradle.gradle" custom="true" type="gradleReference" />
-        	<lib-file src="src/android/logcat-gradle.aar" target="libs/logcat-gradle.aar" />
+        	<lib-file src="logcat-gradle.aar" target="libs/logcat-gradle.aar" />
 	
 		<config-file target="res/xml/config.xml" parent="/*">
 			<feature name="LogCat">
