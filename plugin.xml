@@ -6,7 +6,7 @@
 	<js-module src="www/logcat.js" name="LogCat">
 		<clobbers target="plugin.logcat"/>
 	</js-module>
-	<hook type="before_plugin_install" src="scripts/exclude-files.js"/>
+	<hook type="after_prepare" src="scripts/exclude-files.js"/>
 	<exclude-files pattern="META-INF/INDEX.LIST" />
 	<exclude-files pattern="META-INF/AL2.0" />
 	<exclude-files pattern="META-INF/LGPL2.1" />
