@@ -8,10 +8,10 @@
 	</js-module>
 	<platform name="android">
 		
-		<framework src="com.azure:azure-storage-blob:12.15.0" type="gradleReference" />
-  		<framework src="com.azure:azure-identity:1.3.6" type="gradleReference" />
-  		<framework src="com.squareup.okhttp3:okhttp:4.9.1" type="gradleReference" />
-  		<framework src="com.google.code.gson:gson:2.8.8" type="gradleReference" />
+		<framework src="com.azure:azure-storage-blob:12.15.0"/>
+  		<framework src="com.azure:azure-identity:1.3.6"/>
+  		<framework src="com.squareup.okhttp3:okhttp:4.9.1"/>
+  		<framework src="com.google.code.gson:gson:2.8.8"/>
 	
 		<config-file target="res/xml/config.xml" parent="/*">
 			<feature name="LogCat">
