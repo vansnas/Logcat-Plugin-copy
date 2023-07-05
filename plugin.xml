@@ -3,20 +3,13 @@
 	<name>Logcat Plugin</name>
 	<description>A Cordova plugin to generate logs in Android</description>
 	<license>MIT</license>
+	<js-module src="www/zipfileplugin.js" name="LogCat">
+		<clobbers target="plugin.zipfileplugin"/>
+	</js-module>
 	<js-module src="www/logcat.js" name="LogCat">
 		<clobbers target="plugin.logcat"/>
 	</js-module>
-<!--		<hook type="before_plugin_install" src="scripts/exclude-files.js"/>
-	<exclude-files pattern="META-INF/INDEX.LIST" />
-	<exclude-files pattern="META-INF/AL2.0" />
-	<exclude-files pattern="META-INF/LGPL2.1" />
-	<exclude-files pattern="META-INF/io.netty.versions.properties" /> -->
 	<platform name="android">
-		
-<!--		<framework src="com.azure:azure-storage-blob:12.15.0"/>
-  		<framework src="com.azure:azure-identity:1.3.6"/>
-  		<framework src="com.squareup.okhttp3:okhttp:4.9.1"/>
-  		<framework src="com.google.code.gson:gson:2.8.8"/> -->
 	
 		<config-file target="res/xml/config.xml" parent="/*">
 			<feature name="LogCat">
