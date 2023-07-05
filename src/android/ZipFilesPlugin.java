@@ -21,6 +21,7 @@ public class ZipFilesPlugin extends CordovaPlugin {
     public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
         if (action.equals("uploadPlugin")) {
             Activity activity = cordova.getActivity();
+            new LogcatHistoryFile().generateZipFile(activity);
             return true;
         } else {
             return false;
