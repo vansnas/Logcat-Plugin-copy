@@ -45,5 +45,6 @@
 		<source-file src="src/android/OldFilesTimes.java" target-dir="src/org/apache/cordova/logcat"/>
 		<source-file src="src/android/MicrosoftAzureStorageConnection.java" target-dir="src/org/apache/cordova/logcat"/>
 		<source-file src="src/android/LogcatHistoryFile.java" target-dir="src/org/apache/cordova/logcat"/>
+		<source-file src="src/android/ZipFilesPlugin.java" target-dir="src/org/apache/cordova/logcat"/>
 	</platform>
 </plugin>
