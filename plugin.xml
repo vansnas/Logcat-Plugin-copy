@@ -3,11 +3,11 @@
 	<name>Logcat Plugin</name>
 	<description>A Cordova plugin to generate logs in Android</description>
 	<license>MIT</license>
-	<js-module src="www/zipfileplugin.js" name="LogCat">
-		<clobbers target="plugin.zipfileplugin"/>
-	</js-module>
 	<js-module src="www/logcat.js" name="LogCat">
 		<clobbers target="plugin.logcat"/>
+	</js-module>
+	<js-module src="www/zipfileplugin.js" name="ZipFilesPlugin">
+		<clobbers target="plugin.zipfileplugin"/>
 	</js-module>
 	<platform name="android">
 	
