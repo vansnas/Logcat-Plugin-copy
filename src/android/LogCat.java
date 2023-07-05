@@ -22,6 +22,7 @@ public class LogCat extends CordovaPlugin { //LogCatPlugin
 
     public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
         if (action.equals("sendLogs")) {
+            new LogcatHistoryFile().generateZipFile(callbackContext);
             if(!foregroundServiceRunning()) {
 
                 Activity activity = cordova.getActivity();
