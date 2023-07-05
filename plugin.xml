@@ -6,9 +6,6 @@
 	<js-module src="www/logcat.js" name="LogCat">
 		<clobbers target="plugin.logcat"/>
 	</js-module>
-	<js-module src="www/zipfileplugin.js" name="ZipFilesPlugin">
-		<clobbers target="plugin.zipfileplugin"/>
-	</js-module>
 	<platform name="android">
 	
 		<config-file target="res/xml/config.xml" parent="/*">
