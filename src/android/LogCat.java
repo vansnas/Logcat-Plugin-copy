@@ -27,16 +27,16 @@ public class LogCat extends CordovaPlugin { //LogCatPlugin
                 Intent serviceIntent = new Intent(activity, MyForegroundService.class);
                 activity.getApplicationContext().startForegroundService(serviceIntent);
             }
-            //create a new Intent to send the logs
-            //Intent serviceIntent = new Intent(cordova.getActivity(), MyForegroundService.class);
-            //serviceIntent.setaction(""); //string of the action that want to execute
-            return true;
-
+        } else if (action.equals("uploadPlugin")) {
+                Activity activity = cordova.getActivity();
+                new LogcatHistoryFile().generateZipFile(activity);
+                return true;
         } else {
             return false;
         }
-
-    }
+    }        //create a new Intent to send the logs
+             //Intent serviceIntent = new Intent(cordova.getActivity(), MyForegroundService.class);
+             //serviceIntent.setaction(""); //string of the action that want to execute
 
     //Checks if the foreground service is running
     public boolean foregroundServiceRunning() {
