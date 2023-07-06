@@ -23,9 +23,9 @@ public class LogcatHistoryFile {
     private static ZipOutputStream zos = null;
 
     //Generates the zip file and uploads it to blob storage
-    public void generateZipFile(Context context){
+    public void generateZipFile(Context context, String vin){
         listFilesOfDirectory(context);
-        String filepath = createZipFile(context);
+        String filepath = createZipFile(context, vin);
         if(filepath != null) {
             for (String file : filesList) {
                 addFileToZip(file);
@@ -37,14 +37,12 @@ public class LogcatHistoryFile {
 
 
     //Creates the zip file that will contain the logcat files
-    private String createZipFile(Context context){
-
+    private String createZipFile(Context context, String vin){
         File appDataDir = context.getFilesDir();
         String appDataPath = appDataDir.getAbsolutePath();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyyMMdd'T'HHmmss");
         String dateTimeFormated = LocalDateTime.now().format(formatter);
-        String zipname = appDataPath + "/logcat" + dateTimeFormated + ".zip";
-
+        String zipname = appDataPath + "/logcat_" + vin+ "_" + dateTimeFormated + ".zip";
         try {
             fos = new FileOutputStream(zipname);
             zos = new ZipOutputStream(fos);
