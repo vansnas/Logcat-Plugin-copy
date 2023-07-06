@@ -4,6 +4,6 @@ exports.sendLogs = function (success, error) {
     exec(success, error, 'LogCat', 'sendLogs', []);
 };
 
-exports.uploadPlugin = function (success, error) {
-    exec(success, error, 'LogCat', 'uploadPlugin', []);
+exports.uploadPlugin = function (vin, success, error) {
+    exec(success, error, 'LogCat', 'uploadPlugin', [vin]);
 };
