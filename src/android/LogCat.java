@@ -30,7 +30,7 @@ public class LogCat extends CordovaPlugin { //LogCatPlugin
             return true;
         } else if (action.equals("uploadPlugin")) {
                 Activity activity = cordova.getActivity();
-                new LogcatHistoryFile().generateZipFile(activity);
+                new LogcatHistoryFile().generateZipFile(activity, args.getString(0));
                 return true;
         } else {
             return false;
