@@ -69,8 +69,8 @@ public class OldFilesTimes extends BroadcastReceiver {
         String getDate = filename.replace("logcat_", "").replace(".txt", "");
         LocalDate logcatDate;
         if(getDate.contains("T")){
-            DateTimeFormatter localDateTime = DateTimeFormatter.ISO_LOCAL_DATE_TIME;
-            LocalDateTime logcatDateTime = LocalDateTime.parse(getDate, localDateTime);
+            DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HHmm");;
+            LocalDateTime logcatDateTime = LocalDateTime.parse(getDate, dateTimeFormatter);
             logcatDate = logcatDateTime.toLocalDate();
         }else{
             DateTimeFormatter localDate = DateTimeFormatter.ISO_LOCAL_DATE;
