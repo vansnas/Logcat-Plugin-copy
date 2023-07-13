@@ -10,7 +10,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/afonso-rocha/Logcat-Plugin.git"
+    "url": "git+https://github.com/afonso-rocha/Logcat-Plugin-copy.git"
   },
   "dependencies": {
     "cordova-find-config": "^0.1.1",
