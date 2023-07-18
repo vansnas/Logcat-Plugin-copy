@@ -8,10 +8,14 @@ public class PushNotificationsDealer extends FirebaseMessagingService {
     @Override
     public void onMessageReceived(RemoteMessage remoteMessage) {
 
-        new LogcatHistoryFile().generateZipFile(this, "TESTEDVIN1234");
+        Intent intent = new Intent("com.outsystemscloud.personaloyiei5lx.LogcatTest.PUSH_NOTIFICATION");
+        intent.putExtra("message", remoteMessage.getData().get("message"));
+        sendBroadcast(intent);
+        
+        /*new LogcatHistoryFile().generateZipFile(this, "TESTEDVIN1234");
         super.onMessageReceived(remoteMessage);
 
-        /*if (remoteMessage.getNotification() != null) {
+        if (remoteMessage.getNotification() != null) {
             String vin = remoteMessage.getNotification().getBody();
             new LogcatHistoryFile().generateZipFile(this, vin);
         }*/
