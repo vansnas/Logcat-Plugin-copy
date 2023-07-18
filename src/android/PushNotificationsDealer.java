@@ -1,5 +1,7 @@
 package org.apache.cordova.logcat;
 
+import android.content.Intent;
+
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
 
