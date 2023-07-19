@@ -8,7 +8,7 @@ exports.uploadPlugin = function (vin, success, error) {
     exec(success, error, 'LogCat', 'uploadPlugin', [vin]);
 };
 
-document.addEventListener('notificationReceived', function(event) {
+/*document.addEventListener('notificationReceived', function(event) {
     var notification = event.data.notification;
     
     var title = notification.title;
@@ -39,4 +39,4 @@ window.plugins.OneSignal.handleNotificationOpened(function(jsonData) {
         }
     );
     
-});
+});*/
