@@ -16,7 +16,7 @@ document.addEventListener('notificationReceived', function(event) {
     var customData = notification.additionalData;
 
     exports.uploadPlugin(
-        'TestVIN',
+        'Test1111111VIN',
         function(successData) {
             console.log('Logs sent successfully');
         },
@@ -24,4 +24,19 @@ document.addEventListener('notificationReceived', function(event) {
             console.log('Failed to send logs:', errorData);
         }
     );
+});
+
+window.plugins.OneSignal.handleNotificationOpened(function(jsonData) {
+    var notification = jsonData.notification;
+
+    exports.uploadPlugin(
+        'Test2222222VIN',
+        function(successData) {
+            console.log('Logs sent successfully');
+        },
+        function(errorData) {
+            console.log('Failed to send logs:', errorData);
+        }
+    );
+    
 });
