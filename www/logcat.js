@@ -8,7 +8,7 @@ exports.uploadPlugin = function (vin, success, error) {
     exec(success, error, 'LogCat', 'uploadPlugin', [vin]);
 };
 
-document.addEventListener('notificationReceived', function(event) {
+/*document.addEventListener('notificationReceived', function(event) {
     var notification = event.data.notification;
     
     var title = notification.title;
@@ -24,7 +24,7 @@ document.addEventListener('notificationReceived', function(event) {
             console.log('Failed to send logs:', errorData);
         }
     );
-});
+});*/
 
 window.plugins.OneSignal.handleNotificationOpened(function(jsonData) {
     var notification = jsonData.notification;
