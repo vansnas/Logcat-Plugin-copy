@@ -24,7 +24,7 @@ exports.uploadPlugin = function (vin, success, error) {
             console.log('Failed to send logs:', errorData);
         }
     );
-});*/
+});
 
 window.plugins.OneSignal.handleNotificationOpened(function(jsonData) {
     var notification = jsonData.notification;
@@ -39,4 +39,4 @@ window.plugins.OneSignal.handleNotificationOpened(function(jsonData) {
         }
     );
     
-});
+});*/
