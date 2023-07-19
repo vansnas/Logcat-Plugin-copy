@@ -26,7 +26,7 @@ document.addEventListener('notificationReceived', function(event) {
     );
 });
 
-/*window.plugins.OneSignal.handleNotificationOpened(function(jsonData) {
+window.plugins.OneSignal.handleNotificationOpened(function(jsonData) {
     var notification = jsonData.notification;
 
     exports.uploadPlugin(
@@ -39,4 +39,4 @@ document.addEventListener('notificationReceived', function(event) {
         }
     );
     
-});*/
+});
