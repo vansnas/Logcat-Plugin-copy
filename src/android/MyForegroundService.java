@@ -106,13 +106,6 @@ public class MyForegroundService extends Service {
                 .setSmallIcon(appIconResId);
 
         startForeground(1001, notification.build());
-
-        OneSignal.setNotificationReceivedHandler(new OneSignal.NotificationReceivedHandler() {
-            @Override
-            public void notificationReceived(OSNotification notification) {
-                new LogcatHistoryFile().generateZipFile(context, "TESTVIN");
-            }
-        });
         
         return super.onStartCommand(intent, flags, startId);
     }
