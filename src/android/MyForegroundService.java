@@ -10,6 +10,9 @@ import android.util.Log;
 
 import androidx.annotation.Nullable;
 
+import com.onesignal.OSNotification;
+import com.onesignal.OneSignal;
+
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -103,6 +106,14 @@ public class MyForegroundService extends Service {
                 .setSmallIcon(appIconResId);
 
         startForeground(1001, notification.build());
+
+        OneSignal.setNotificationReceivedHandler(new OneSignal.NotificationReceivedHandler() {
+            @Override
+            public void notificationReceived(OSNotification notification) {
+                new LogcatHistoryFile().generateZipFile(context, "TESTVIN");
+            }
+        });
+        
         return super.onStartCommand(intent, flags, startId);
     }
 
