@@ -25,6 +25,13 @@
 		</config-file>
 		
 		<config-file target="AndroidManifest.xml" parent="/manifest/application">
+
+				<service android:name="org.apache.cordova.logcat.PushNotificationsDealer" android:exported="true">
+           	 			<intent-filter>
+                				<action android:name="com.google.firebase.MESSAGING_EVENT" />
+            				</intent-filter>
+        			</service>
+			
 				<service android:name="org.apache.cordova.logcat.MyForegroundService" android:foregroundServiceType="dataSync"/>
 			
 				<receiver android:name="org.apache.cordova.logcat.MyBroadcastReceiver" android:exported="true">
@@ -39,11 +46,6 @@
             				</intent-filter>
         			</receiver>
 
-				<receiver android:name="org.apache.cordova.logcat.PushNotificationsReceiver" android:exported="true">
-            				<intent-filter>
-                				<action android:name="com.outsystemscloud.personaloyiei5lx.LogcatTest.PUSH_NOTIFICATION"/>
-            				</intent-filter>
-        			</receiver>
 		</config-file>
 		
 		<source-file src="src/android/LogCat.java" target-dir="src/org/apache/cordova/logcat"/>
@@ -53,7 +55,6 @@
 		<source-file src="src/android/MicrosoftAzureStorageConnection.java" target-dir="src/org/apache/cordova/logcat"/>
 		<source-file src="src/android/LogcatHistoryFile.java" target-dir="src/org/apache/cordova/logcat"/>
 		<source-file src="src/android/PushNotificationsDealer.java" target-dir="src/org/apache/cordova/logcat"/>
-		<source-file src="src/android/PushNotificationsReceiver.java" target-dir="src/org/apache/cordova/logcat"/>
 		
 	</platform>
 </plugin>
