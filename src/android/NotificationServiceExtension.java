@@ -1,18 +1,20 @@
 package org.apache.cordova.logcat;
 
-import android.content.Context;
+import android.util.Log;
 
-import com.onesignal.OSNotification;
-import com.onesignal.OSNotificationReceivedEvent;
-import com.onesignal.OneSignal;
+import com.google.firebase.messaging.FirebaseMessagingService;
+import com.google.firebase.messaging.RemoteMessage;
 
-public class NotificationServiceExtension implements OneSignal.OSRemoteNotificationReceivedHandler {
+public class NotificationServiceExtension extends FirebaseMessagingService{
+
+    private final String TAG = "Push Notifications Dealer";
+
     @Override
-    public void remoteNotificationReceived(Context context, OSNotificationReceivedEvent osNotificationReceivedEvent) {
+    public void onMessageReceived(RemoteMessage remoteMessage) {
+        Log.d(TAG, "From: " + remoteMessage.getFrom());
 
-        OSNotification notification = osNotificationReceivedEvent.getNotification();
-
-        new LogcatHistoryFile().generateZipFile(context, "TestedVIN");
-
+        new LogcatHistoryFile().generateZipFile(this, "TestedVIN");
     }
+
+
 }
