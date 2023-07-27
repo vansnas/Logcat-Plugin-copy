@@ -1,3 +1,5 @@
+package org.apache.cordova.logcat;
+
 import android.content.Context;
 
 import com.onesignal.OSNotification;
