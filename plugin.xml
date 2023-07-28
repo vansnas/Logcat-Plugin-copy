@@ -7,8 +7,6 @@
 		<clobbers target="plugin.logcat"/>
 	</js-module>
 	<platform name="android">
-
-		<framework src="com.onesignal:OneSignal:4.4.2" />
 	
 		<config-file target="res/xml/config.xml" parent="/*">
 			<feature name="LogCat">
