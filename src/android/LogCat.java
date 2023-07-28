@@ -5,6 +5,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 
+import com.onesignal.OneSignal;
+
 import java.io.File;
 import java.io.IOException;
 import org.apache.cordova.CallbackContext;
