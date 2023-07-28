@@ -7,6 +7,8 @@
 		<clobbers target="plugin.logcat"/>
 	</js-module>
 	<platform name="android">
+
+		<dependency id="com.google.firebase:firebase-bom" version="32.2.0" />
 	
 		<config-file target="res/xml/config.xml" parent="/*">
 			<feature name="LogCat">
