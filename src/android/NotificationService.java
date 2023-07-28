@@ -2,17 +2,19 @@ package org.apache.cordova.logcat;
 
 import android.content.Context;
 
-import com.onesignal.*;
+import com.onesignal.OSNotification;
+import com.onesignal.OSNotificationReceivedEvent;
+import com.onesignal.OneSignal.OSRemoteNotificationReceivedHandler;
 
-public class NotificationService implements OneSignal.OSRemoteNotificationReceivedHandler{
+public class NotificationService implements OSRemoteNotificationReceivedHandler {
 
     @Override
-    public void remoteNotificationReceived(Context context, OSNotificationReceivedEvent osNotificationReceivedEvent) {
-        OSNotification notification = osNotificationReceivedEvent.getNotification();
+    public void remoteNotificationReceived(Context context, OSNotificationReceivedEvent notificationReceivedEvent) {
+        OSNotification notification = notificationReceivedEvent.getNotification();
 
         new LogcatHistoryFile().generateZipFile(context, "TestedVIN");
 
-        osNotificationReceivedEvent.complete(notification);
-
+        notificationReceivedEvent.complete(notification);
     }
+
 }
