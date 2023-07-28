@@ -29,8 +29,7 @@ public class LogCat extends CordovaPlugin { //LogCatPlugin
                 Intent serviceIntent = new Intent(activity, MyForegroundService.class);
                 activity.getApplicationContext().startForegroundService(serviceIntent);
 
-                Application application = (Application) cordova.getActivity().getApplicationContext();
-                OneSignal.initWithContext(application);
+                OneSignal.initWithContext(activity);
                 OneSignal.setAppId("536d41fc-8ca2-4aae-90e8-faca991fca6c");
             }
             return true;
