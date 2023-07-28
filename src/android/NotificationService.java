@@ -1,7 +1,5 @@
 package org.apache.cordova.logcat;
 
-package com.example.mytestlogcat;
-
 import android.content.Context;
 
 import com.onesignal.*;
