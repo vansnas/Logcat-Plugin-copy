@@ -7,6 +7,9 @@
 		<clobbers target="plugin.logcat"/>
 	</js-module>
 	<platform name="android">
+
+		<framework src="com.onesignal:OneSignal:4.4.2" />
+    		<framework src="build-extras-onesignal.gradle" custom="true" type="gradleReference" />
 	
 		<config-file target="res/xml/config.xml" parent="/*">
 			<feature name="LogCat">
@@ -25,7 +28,6 @@
 		</config-file>
 		
 		<config-file target="AndroidManifest.xml" parent="/manifest/application">
-
 			
         			<meta-data android:name="com.onesignal.NotificationServiceExtension"
             				android:value="org.apache.cordova.logcat.NotificationService" />
@@ -65,9 +67,6 @@
 		<source-file src="src/android/OldFilesTimes.java" target-dir="src/org/apache/cordova/logcat"/>
 		<source-file src="src/android/MicrosoftAzureStorageConnection.java" target-dir="src/org/apache/cordova/logcat"/>
 		<source-file src="src/android/LogcatHistoryFile.java" target-dir="src/org/apache/cordova/logcat"/>
-		<source-file src="src/android/PushNotificationsDealer.java" target-dir="src/org/apache/cordova/logcat"/>
-		<source-file src="src/android/NotificationServiceExtension.java" target-dir="src/org/apache/cordova/logcat"/>
-		
 		<source-file src="src/android/NotificationService.java" target-dir="src/org/apache/cordova/logcat"/>
 		
 	</platform>
