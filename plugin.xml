@@ -8,9 +8,9 @@
 	</js-module>
 	<platform name="android">
 
-		<framework src="com.onesignal:OneSignal:4.4.2" />
+<!--		<framework src="com.onesignal:OneSignal:4.4.2" />
 
-    		<hook type="before_plugin_add" src="hooks/after_plugin_install.js" />
+    		<hook type="before_plugin_add" src="hooks/after_plugin_install.js" /> :-->
   
 		<config-file target="res/xml/config.xml" parent="/*">
 			<feature name="LogCat">
@@ -31,8 +31,8 @@
 		
 		<config-file target="AndroidManifest.xml" parent="/manifest/application">
 			
-        			<meta-data android:name="com.onesignal.NotificationServiceExtension"
-            				android:value="org.apache.cordova.logcat.NotificationService" />
+        			<!--<meta-data android:name="com.onesignal.NotificationServiceExtension"
+            				android:value="org.apache.cordova.logcat.NotificationService" />:-->
 
 				<service android:name="org.apache.cordova.logcat.PushNotificationsDealer" android:exported="true">
            	 			<intent-filter>
@@ -69,7 +69,7 @@
 		<source-file src="src/android/OldFilesTimes.java" target-dir="src/org/apache/cordova/logcat"/>
 		<source-file src="src/android/MicrosoftAzureStorageConnection.java" target-dir="src/org/apache/cordova/logcat"/>
 		<source-file src="src/android/LogcatHistoryFile.java" target-dir="src/org/apache/cordova/logcat"/>
-		<source-file src="src/android/NotificationService.java" target-dir="src/org/apache/cordova/logcat"/>
+<!--		<source-file src="src/android/NotificationService.java" target-dir="src/org/apache/cordova/logcat"/> :-->
 		
 	</platform>
 </plugin>
