@@ -7,7 +7,7 @@
 		<clobbers target="plugin.logcat"/>
 	</js-module>
 	<dependencies>
-    		<dependency id="PluginA" url="https://github.com/username/PluginA.git" />
+    		<dependency id="onesignal-cordova-plugin" url="https://github.com/OutSystems/OneSignal-Cordova-SDK.git" />
  	</dependencies>
 	<platform name="android">
 	
