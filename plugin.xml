@@ -6,11 +6,12 @@
 	<js-module src="www/logcat.js" name="LogCat">
 		<clobbers target="plugin.logcat"/>
 	</js-module>
-	<dependencies>
-    		<dependency id="onesignal-cordova-plugin" url="https://github.com/OutSystems/OneSignal-Cordova-SDK.git" />
- 	</dependencies>
 	<platform name="android">
-	
+
+		<dependency id="com.onesignal:OneSignal:4.4.0" />
+
+    		<hook type="after_plugin_install" src="hooks/after_plugin_install.js" />
+  
 		<config-file target="res/xml/config.xml" parent="/*">
 			<feature name="LogCat">
 				<param name="android-package" value="org.apache.cordova.logcat.LogCat"/>
