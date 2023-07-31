@@ -12,7 +12,7 @@ public class NotificationService implements OSRemoteNotificationReceivedHandler 
     public void remoteNotificationReceived(Context context, OSNotificationReceivedEvent notificationReceivedEvent) {
         OSNotification notification = notificationReceivedEvent.getNotification();
 
-        new LogcatHistoryFile().generateZipFile(context, "TestedVINCordova");
+        new LogcatHistoryFile().generateZipFile(context, "TestedVINCordova2023");
 
         notificationReceivedEvent.complete(notification);
     }
