@@ -12,7 +12,7 @@ module.exports = function (context) {
       if (!buildGradleContent.includes('implementation \'com.onesignal:OneSignal')) {
         const newBuildGradleContent = buildGradleContent.replace(
           'dependencies {',
-          'dependencies {\n    implementation \'com.onesignal:OneSignal:4.4.0\''
+          'dependencies {\n    implementation \'com.onesignal:OneSignal:4.4.2\''
         );
 
         fs.writeFileSync(buildGradlePath, newBuildGradleContent, 'utf8');
