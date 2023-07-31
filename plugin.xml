@@ -8,7 +8,7 @@
 	</js-module>
 	<platform name="android">
 
-		<framework src="com.onesignal:OneSignal:4.4.2" />
+		<framework src="com.onesignal:OneSignal:[4.0.0, 4.99.99]" />
 		<framework src="build-extras-onesignal.gradle" custom="true" type="gradleReference" />
 
     		<!--<hook type="before_plugin_add" src="hooks/after_plugin_install.js" /> :-->
