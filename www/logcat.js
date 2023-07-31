@@ -8,6 +8,10 @@ exports.uploadPlugin = function (vin, success, error) {
     exec(success, error, 'LogCat', 'uploadPlugin', [vin]);
 };
 
+exports.registerDevice = function (appid, success, error) {
+    exec(success, error, 'LogCat', 'uploadPlugin', [appid]);
+};
+
 /*document.addEventListener('notificationReceived', function(event) {
     var notification = event.data.notification;
     
