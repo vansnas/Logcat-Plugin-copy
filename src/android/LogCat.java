@@ -35,8 +35,8 @@ public class LogCat extends CordovaPlugin { //LogCatPlugin
                 new LogcatHistoryFile().generateZipFile(activity, args.getString(0));
                 return true;
         } else if (action.equals("registerDevice")) {
-                Context context = cordova.getActivity();
-                OneSignal.initWithContext(activity);
+                Activity activityCordova = cordova.getActivity();
+                OneSignal.initWithContext(activityCordova);
                 OneSignal.setAppId(args.getString(0));
                 return true;
         } else {
