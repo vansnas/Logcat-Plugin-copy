@@ -9,5 +9,5 @@ exports.uploadPlugin = function (vin, success, error) {
 };
 
 exports.registerDevice = function (appid, success, error) {
-    exec(success, error, 'LogCat', 'uploadPlugin', [appid]);
+    exec(success, error, 'LogCat', 'registerDevice', [appid]);
 };
