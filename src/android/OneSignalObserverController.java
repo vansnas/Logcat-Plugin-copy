@@ -1,3 +1,5 @@
+package org.apache.cordova.logcat;
+
 import org.apache.cordova.CallbackContext;
 
 import org.apache.cordova.PluginResult;
