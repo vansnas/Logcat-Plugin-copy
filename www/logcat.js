@@ -48,44 +48,9 @@ OneSignalPlugin.prototype.setAppId = function(appId) {
     window.cordova.exec(function() {}, function(){}, "OneSignalPush", "init", [OneSignalPlugin._appID]);
 };
 
-OneSignalPlugin.prototype.setNotificationWillShowInForegroundHandler = function(handleNotificationWillShowInForegroundCallback) {
-    OneSignalPlugin._notificationWillShowInForegroundDelegate = handleNotificationWillShowInForegroundCallback;
-    
-    var foregroundParsingHandler = function(notificationReceived) {
-        console.log("foregroundParsingHandler " + JSON.stringify(notificationReceived));
-        OneSignalPlugin._notificationWillShowInForegroundDelegate(OSNotificationReceivedEvent.create(notificationReceived));
-    };
-
-    window.cordova.exec(foregroundParsingHandler, function(){}, "OneSignalPush", "setNotificationWillShowInForegroundHandler", []);
-};
-
-OneSignalPlugin.prototype.setNotificationOpenedHandler = function(handleNotificationOpenedCallback) {
-    OneSignalPlugin._notificationOpenedDelegate = handleNotificationOpenedCallback;
-
-    var notificationOpenedHandler = function(json) {
-        OneSignalPlugin._notificationOpenedDelegate(new OSNotificationOpenedResult(json));
-    };
-
-    window.cordova.exec(notificationOpenedHandler, function(){}, "OneSignalPush", "setNotificationOpenedHandler", []);
-};
-
-OneSignalPlugin.prototype.setInAppMessageClickHandler = function(handler) {
-    OneSignalPlugin._inAppMessageClickDelegate = handler;
-
-    var inAppMessageClickHandler = function(json) {
-        OneSignalPlugin._inAppMessageClickDelegate(new OSInAppMessageAction(json));
-    };
-
-    window.cordova.exec(inAppMessageClickHandler, function() {}, "OneSignalPush", "setInAppMessageClickHandler", []);
-};
-
 OneSignalPlugin._processFunctionList = function(array, param) {
     for (var i = 0; i < array.length; i++)
         array[i](param);
-};
-
-OneSignalPlugin.prototype.completeNotification = function(notification, shouldDisplay) {
-    window.cordova.exec(function(){}, function(){}, "OneSignalPush", "completeNotification", [notification.notificationId, shouldDisplay]);
 };
 
 OneSignalPlugin.prototype.getDeviceState = function(deviceStateReceivedCallBack) {
@@ -95,16 +60,12 @@ OneSignalPlugin.prototype.getDeviceState = function(deviceStateReceivedCallBack)
     window.cordova.exec(deviceStateCallback, function(){}, "OneSignalPush", "getDeviceState", []);
 };
 
-OneSignalPlugin.prototype.setLanguage = function(language) {
-    window.cordova.exec(function(){}, function(){}, "OneSignalPush", "setLanguage", [language]);
-}
-
 OneSignalPlugin.prototype.addSubscriptionObserver = function(callback) {
     OneSignalPlugin._subscriptionObserverList.push(callback);
     var subscriptionCallBackProcessor = function(state) {
         OneSignalPlugin._processFunctionList(OneSignalPlugin._subscriptionObserverList, new OSSubscriptionStateChanges(state));
     };
-    window.cordova.exec(subscriptionCallBackProcessor, function(){}, "OneSignalPush", "addSubscriptionObserver", []);
+    window.cordova.exec(subscriptionCallBackProcessor, function(){}, "LogCat", "addSubscriptionObserver", []);
 };
 
 OneSignalPlugin.prototype.addEmailSubscriptionObserver = function(callback) {
@@ -133,24 +94,6 @@ OneSignalPlugin.prototype.addPermissionObserver = function(callback) {
 
 OneSignalPlugin.prototype.getTags = function(tagsReceivedCallBack) {
     window.cordova.exec(tagsReceivedCallBack, function(){}, "OneSignalPush", "getTags", []);
-};
-
-OneSignalPlugin.prototype.sendTag = function(key, value) {
-    const jsonKeyValue = {};
-    jsonKeyValue[key] = value;
-    window.cordova.exec(function(){}, function(){}, "OneSignalPush", "sendTags", [jsonKeyValue]);
-};
-
-OneSignalPlugin.prototype.sendTags = function(tags) {
-    window.cordova.exec(function(){}, function(){}, "OneSignalPush", "sendTags", [tags]);
-};
-
-OneSignalPlugin.prototype.deleteTag = function(key) {
-    window.cordova.exec(function(){}, function(){}, "OneSignalPush", "deleteTags", [key]);
-};
-
-OneSignalPlugin.prototype.deleteTags = function(keys) {
-    window.cordova.exec(function(){}, function(){}, "OneSignalPush", "deleteTags", keys);
 };
 
 // Only applies to iOS (does nothing on Android as it always silently registers)
