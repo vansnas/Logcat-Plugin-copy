@@ -47,7 +47,7 @@ public class LogCat extends CordovaPlugin { //LogCatPlugin
         switch(action) {
                 
             case ADD_SUBSCRIPTION_OBSERVER:
-                result = new OneSignalObserverController().addSubscriptionObserver(callbackContext);
+                result = OneSignalObserverController.addSubscriptionObserver(callbackContext);
                 break;
 
             default:
