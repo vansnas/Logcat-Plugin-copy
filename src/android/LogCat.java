@@ -22,6 +22,22 @@ public class LogCat extends CordovaPlugin { //LogCatPlugin
 
     private static final String TAG = "LogCatPlugin";
 
+    public boolean init(JSONArray data) {
+        try {
+            String appId = data.getString(0);
+
+            OneSignal.sdkType = "cordova";
+
+            OneSignal.setAppId(appId);
+            OneSignal.initWithContext(this.cordova.getActivity());
+
+            return true;
+        } catch (JSONException e) {
+            Log.e(TAG, "execute: Got JSON Exception " + e.getMessage());
+            return false;
+        }
+    }
+
     public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
 
         switch(action) {
