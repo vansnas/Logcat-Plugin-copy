@@ -22,6 +22,8 @@ public class LogCat extends CordovaPlugin { //LogCatPlugin
 
     private static final String TAG = "LogCatPlugin";
 
+    private static final String ADD_SUBSCRIPTION_OBSERVER = "addSubscriptionObserver";
+
     public boolean init(JSONArray data) {
         try {
             String appId = data.getString(0);
