@@ -42,6 +42,8 @@ public class LogCat extends CordovaPlugin { //LogCatPlugin
 
     public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
 
+        boolean result = false;
+        
         switch(action) {
                 
             case ADD_SUBSCRIPTION_OBSERVER:
