@@ -24,7 +24,7 @@ var OSEmailSubscriptionStateChanges = require('./Subscription').OSEmailSubscript
 var OSSMSSubscriptionStateChanges = require('./Subscription').OSSMSSubscriptionStateChanges;
 
 var OneSignalPlugin = function() {
-    var _appID = "";
+    var _appID = "536d41fc-8ca2-4aae-90e8-faca991fca6c";
     var _notificationWillShowInForegroundDelegate = function(notificationReceived) {};
     var _notificationOpenedDelegate = function(notificationOpened) {};
     var _inAppMessageClickDelegate = function (action) {};
