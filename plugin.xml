@@ -4,7 +4,7 @@
 	<description>A Cordova plugin to generate logs in Android</description>
 	<license>MIT</license>
 	<js-module src="www/logcat.js" name="LogCat">
-		<clobbers target="plugin.logcat"/>
+		<clobbers target="OneSignal"/>
 	</js-module>
 	<platform name="android">
 
