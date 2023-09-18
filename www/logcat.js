@@ -268,7 +268,7 @@ OneSignalPlugin.prototype.removeExternalUserId = function(externalUserIdCallback
 };
 
 //-------------------------------------------------------------------
-
+*/
 var OneSignal = new OneSignalPlugin();
 module.exports = OneSignal;
 
@@ -276,4 +276,4 @@ if(!window.plugins)
     window.plugins = {};
 
 if (!window.plugins.OneSignal)
-    window.plugins.OneSignal = OneSignal; */
+    window.plugins.OneSignal = OneSignal; 
