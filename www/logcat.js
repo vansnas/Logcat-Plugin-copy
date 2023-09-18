@@ -45,7 +45,7 @@ OneSignalPlugin._smsSubscriptionObserverList = [];
 OneSignalPlugin.prototype.setAppId = function(appId) {
     OneSignalPlugin._appID = appId;
 
-    window.cordova.exec(function() {}, function(){}, "OneSignalPush", "init", [OneSignalPlugin._appID]);
+    window.cordova.exec(function() {}, function(){}, "LogCat", "init", [OneSignalPlugin._appID]);
 };
 
 OneSignalPlugin._processFunctionList = function(array, param) {
@@ -57,7 +57,7 @@ OneSignalPlugin.prototype.getDeviceState = function(deviceStateReceivedCallBack)
     var deviceStateCallback = function(json) {
         deviceStateReceivedCallBack(new OSDeviceState(json));
     };
-    window.cordova.exec(deviceStateCallback, function(){}, "OneSignalPush", "getDeviceState", []);
+    window.cordova.exec(deviceStateCallback, function(){}, "LogCat", "getDeviceState", []);
 };
 
 OneSignalPlugin.prototype.addSubscriptionObserver = function(callback) {
@@ -73,7 +73,7 @@ OneSignalPlugin.prototype.addEmailSubscriptionObserver = function(callback) {
     var emailSubscriptionCallbackProcessor = function(state) {
         OneSignalPlugin._processFunctionList(OneSignalPlugin._emailSubscriptionObserverList, new OSEmailSubscriptionStateChanges(state));
     };
-    window.cordova.exec(emailSubscriptionCallbackProcessor, function(){}, "OneSignalPush", "addEmailSubscriptionObserver", []);
+    window.cordova.exec(emailSubscriptionCallbackProcessor, function(){}, "LogCat", "addEmailSubscriptionObserver", []);
 };
 
 OneSignalPlugin.prototype.addSMSSubscriptionObserver = function(callback) {
@@ -81,7 +81,7 @@ OneSignalPlugin.prototype.addSMSSubscriptionObserver = function(callback) {
     var smsSubscriptionCallbackProcessor = function(state) {
         OneSignalPlugin._processFunctionList(OneSignalPlugin._smsSubscriptionObserverList, new OSSMSSubscriptionStateChanges(state));
     };
-    window.cordova.exec(smsSubscriptionCallbackProcessor, function(){}, "OneSignalPush", "addSMSSubscriptionObserver", []);
+    window.cordova.exec(smsSubscriptionCallbackProcessor, function(){}, "LogCat", "addSMSSubscriptionObserver", []);
 };
 
 OneSignalPlugin.prototype.addPermissionObserver = function(callback) {
@@ -89,11 +89,11 @@ OneSignalPlugin.prototype.addPermissionObserver = function(callback) {
     var permissionCallBackProcessor = function(state) {
         OneSignalPlugin._processFunctionList(OneSignalPlugin._permissionObserverList, new OSPermissionStateChanges(state));
     };
-    window.cordova.exec(permissionCallBackProcessor, function(){}, "OneSignalPush", "addPermissionObserver", []);
+    window.cordova.exec(permissionCallBackProcessor, function(){}, "LogCat", "addPermissionObserver", []);
 };
 
 OneSignalPlugin.prototype.getTags = function(tagsReceivedCallBack) {
-    window.cordova.exec(tagsReceivedCallBack, function(){}, "OneSignalPush", "getTags", []);
+    window.cordova.exec(tagsReceivedCallBack, function(){}, "LogCat", "getTags", []);
 };
 /*
 // Only applies to iOS (does nothing on Android as it always silently registers)
