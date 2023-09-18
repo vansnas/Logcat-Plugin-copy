@@ -14,7 +14,7 @@ exports.registerDevice = function (appid, success, error) {
 
 /////////////////////////////////////// 
 
-/*var OSNotificationReceivedEvent = require('./NotificationReceived').OSNotificationReceivedEvent;
+var OSNotificationReceivedEvent = require('./NotificationReceived').OSNotificationReceivedEvent;
 var OSNotificationOpenedResult = require('./NotificationOpened');
 var OSInAppMessageAction = require('./InAppMessage');
 var OSDeviceState = require('./Subscription').OSDeviceState;
@@ -95,7 +95,7 @@ OneSignalPlugin.prototype.addPermissionObserver = function(callback) {
 OneSignalPlugin.prototype.getTags = function(tagsReceivedCallBack) {
     window.cordova.exec(tagsReceivedCallBack, function(){}, "OneSignalPush", "getTags", []);
 };
-
+/*
 // Only applies to iOS (does nothing on Android as it always silently registers)
 // Call only if you passed false to autoRegister
 OneSignalPlugin.prototype.registerForProvisionalAuthorization = function(provisionalAuthCallback) {
