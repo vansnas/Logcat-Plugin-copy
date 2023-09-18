@@ -12,7 +12,7 @@ exports.registerDevice = function (appid, success, error) {
     exec(success, error, 'LogCat', 'registerDevice', [appid]);
 };*/
 
-///////////////////////////////////////
+/////////////////////////////////////// 
 
 var OSNotificationReceivedEvent = require('./NotificationReceived').OSNotificationReceivedEvent;
 var OSNotificationOpenedResult = require('./NotificationOpened');
