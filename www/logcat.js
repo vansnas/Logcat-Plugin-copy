@@ -1,4 +1,4 @@
-/**var exec = require('cordova/exec');
+var exec = require('cordova/exec');
 
 exports.sendLogs = function (success, error) {
     exec(success, error, 'LogCat', 'sendLogs', []);
@@ -10,11 +10,11 @@ exports.uploadPlugin = function (vin, success, error) {
 
 exports.registerDevice = function (appid, success, error) {
     exec(success, error, 'LogCat', 'registerDevice', [appid]);
-};*/
+};
 
 /////////////////////////////////////// 
 
-var OSNotificationReceivedEvent = require('./NotificationReceived').OSNotificationReceivedEvent;
+/*var OSNotificationReceivedEvent = require('./NotificationReceived').OSNotificationReceivedEvent;
 var OSNotificationOpenedResult = require('./NotificationOpened');
 var OSInAppMessageAction = require('./InAppMessage');
 var OSDeviceState = require('./Subscription').OSDeviceState;
@@ -165,9 +165,7 @@ OneSignalPlugin.prototype.provideUserConsent = function(granted) {
     window.cordova.exec(function() {}, function() {}, "OneSignalPush", "provideUserConsent", [granted]);
 };
 
-/**
- * Email
- */
+
 OneSignalPlugin.prototype.setEmail = function(email, emailAuthToken, onSuccess, onFailure) {
     if (onSuccess == null)
         onSuccess = function() {};
@@ -198,9 +196,7 @@ OneSignalPlugin.prototype.logoutEmail = function(onSuccess, onFailure) {
     window.cordova.exec(onSuccess, onFailure, "OneSignalPush", "logoutEmail", []);
 };
 
-/**
- * SMS
- */
+
 OneSignalPlugin.prototype.setSMSNumber = function(smsNumber, smsAuthToken, onSuccess, onFailure) {
     if (onSuccess == null)
         onSuccess = function() {};
@@ -231,11 +227,7 @@ OneSignalPlugin.prototype.logoutSMSNumber = function(onSuccess, onFailure) {
     window.cordova.exec(onSuccess, onFailure, "OneSignalPush", "logoutSMSNumber", []);
 };
 
-/** Possible function usages
-  setExternalUserId(externalId: string?): void
-  setExternalUserId(externalId: string?, callback: function): void
-  setExternalUserId(externalId: string?, externalIdAuthHash: string?, callback: function): void
-*/
+
 OneSignalPlugin.prototype.setExternalUserId = function(externalId, varArg1, varArg2) {
     if (externalId == undefined)
         externalId = null;
@@ -284,4 +276,4 @@ if(!window.plugins)
     window.plugins = {};
 
 if (!window.plugins.OneSignal)
-    window.plugins.OneSignal = OneSignal;
+    window.plugins.OneSignal = OneSignal; */
