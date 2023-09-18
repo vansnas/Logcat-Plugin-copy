@@ -6,6 +6,12 @@
 	<js-module src="www/logcat.js" name="LogCat">
 		<clobbers target="OneSignal"/>
 	</js-module>
+
+	<js-module src="www/NotificationReceived.js" name="NotificationReceived" />
+  	<js-module src="www/NotificationOpened.js" name="NotificationOpened" />
+  	<js-module src="www/InAppMessage.js" name="InAppMessage" />
+  	<js-module src="www/Subscription.js" name="Subscription" />
+	
 	<platform name="android">
 
 		<framework src="com.onesignal:OneSignal:[4.0.0, 4.99.99]" />
