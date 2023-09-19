@@ -95,11 +95,11 @@ OneSignalPlugin.prototype.addPermissionObserver = function(callback) {
 OneSignalPlugin.prototype.getTags = function(tagsReceivedCallBack) {
     window.cordova.exec(tagsReceivedCallBack, function(){}, "LogCat", "getTags", []);
 };
-/*
+
 // Only applies to iOS (does nothing on Android as it always silently registers)
 // Call only if you passed false to autoRegister
 OneSignalPlugin.prototype.registerForProvisionalAuthorization = function(provisionalAuthCallback) {
-    window.cordova.exec(provisionalAuthCallback, function(){}, "OneSignalPush", "registerForProvisionalAuthorization", []);
+    window.cordova.exec(provisionalAuthCallback, function(){}, "LogCat", "registerForProvisionalAuthorization", []);
 };
 
 // Only applies to iOS (does nothing on Android as it always silently registers without user permission)
@@ -107,32 +107,32 @@ OneSignalPlugin.prototype.promptForPushNotificationsWithUserResponse = function(
     var internalCallback = function(data) {
         callback(data.accepted === "true");
     };
-    window.cordova.exec(internalCallback, function(){}, "OneSignalPush", "promptForPushNotificationsWithUserResponse", []);
+    window.cordova.exec(internalCallback, function(){}, "LogCat", "promptForPushNotificationsWithUserResponse", []);
 };
 
 // Only applies to Android.
 OneSignalPlugin.prototype.clearOneSignalNotifications = function() {
-    window.cordova.exec(function(){}, function(){}, "OneSignalPush", "clearOneSignalNotifications", []);
+    window.cordova.exec(function(){}, function(){}, "LogCat", "clearOneSignalNotifications", []);
 };
 
 // Only applies to Android.
 // If notifications are disabled for your app, unsubscribe the user from OneSignalPlugin.
 OneSignalPlugin.prototype.unsubscribeWhenNotificationsAreDisabled = function(unsubscribe) {
-    window.cordova.exec(function(){}, function(){}, "OneSignalPush", "unsubscribeWhenNotificationsAreDisabled", [unsubscribe]);
+    window.cordova.exec(function(){}, function(){}, "LogCat", "unsubscribeWhenNotificationsAreDisabled", [unsubscribe]);
 };
 
 // Only applies to Android. Cancels a single OneSignal notification based on its Android notification integer ID
 OneSignalPlugin.prototype.removeNotification = function(id) {
-    window.cordova.exec(function(){}, function(){}, "OneSignalPush", "removeNotification", [id]);
+    window.cordova.exec(function(){}, function(){}, "LogCat", "removeNotification", [id]);
 };
 
 // Only applies to Android. Cancels a single OneSignal notification based on its Android notification group ID
 OneSignalPlugin.prototype.removeGroupedNotifications = function(groupId) {
-    window.cordova.exec(function(){}, function(){}, "OneSignalPush", "removeGroupedNotifications", [groupId]);
+    window.cordova.exec(function(){}, function(){}, "LogCat", "removeGroupedNotifications", [groupId]);
 };
 
 OneSignalPlugin.prototype.disablePush = function(disable) {
-    window.cordova.exec(function(){}, function(){}, "OneSignalPush", "disablePush", [disable]);
+    window.cordova.exec(function(){}, function(){}, "LogCat", "disablePush", [disable]);
 };
 
 OneSignalPlugin.prototype.postNotification = function(jsonData, onSuccess, onFailure) {
@@ -142,27 +142,27 @@ OneSignalPlugin.prototype.postNotification = function(jsonData, onSuccess, onFai
     if (onFailure == null)
         onFailure = function() {};
 
-    window.cordova.exec(onSuccess, onFailure, "OneSignalPush", "postNotification", [jsonData]);
+    window.cordova.exec(onSuccess, onFailure, "LogCat", "postNotification", [jsonData]);
 };
 
 OneSignalPlugin.prototype.setLogLevel = function(nsLogLevel, visualLogLevel) {
-    window.cordova.exec(function(){}, function(){}, "OneSignalPush", "setLogLevel", [nsLogLevel, visualLogLevel]);
+    window.cordova.exec(function(){}, function(){}, "LogCat", "setLogLevel", [nsLogLevel, visualLogLevel]);
 };
 
 OneSignalPlugin.prototype.userProvidedPrivacyConsent = function(callback) {
-    window.cordova.exec(callback, function(){}, "OneSignalPush", "userProvidedPrivacyConsent", []);
+    window.cordova.exec(callback, function(){}, "LogCat", "userProvidedPrivacyConsent", []);
 };
 
 OneSignalPlugin.prototype.requiresUserPrivacyConsent = function(callback) {
-    window.cordova.exec(callback, function(){}, "OneSignalPush", "requiresUserPrivacyConsent", []);
+    window.cordova.exec(callback, function(){}, "LogCat", "requiresUserPrivacyConsent", []);
 };
 
 OneSignalPlugin.prototype.setRequiresUserPrivacyConsent = function(required) {
-    window.cordova.exec(function() {}, function() {}, "OneSignalPush", "setRequiresUserPrivacyConsent", [required]);
+    window.cordova.exec(function() {}, function() {}, "LogCat", "setRequiresUserPrivacyConsent", [required]);
 };
 
 OneSignalPlugin.prototype.provideUserConsent = function(granted) {
-    window.cordova.exec(function() {}, function() {}, "OneSignalPush", "provideUserConsent", [granted]);
+    window.cordova.exec(function() {}, function() {}, "LogCat", "provideUserConsent", [granted]);
 };
 
 
@@ -177,11 +177,11 @@ OneSignalPlugin.prototype.setEmail = function(email, emailAuthToken, onSuccess, 
         onFailure = onSuccess;
         onSuccess = emailAuthToken;
 
-        window.cordova.exec(onSuccess, onFailure, "OneSignalPush", "setUnauthenticatedEmail", [email]);
+        window.cordova.exec(onSuccess, onFailure, "LogCat", "setUnauthenticatedEmail", [email]);
     } else if (emailAuthToken == undefined) {
-        window.cordova.exec(onSuccess, onFailure, "OneSignalPush", "setUnauthenticatedEmail", [email]);
+        window.cordova.exec(onSuccess, onFailure, "LogCat", "setUnauthenticatedEmail", [email]);
     } else {
-        window.cordova.exec(onSuccess, onFailure, "OneSignalPush", "setEmail", [email, emailAuthToken]);
+        window.cordova.exec(onSuccess, onFailure, "LogCat", "setEmail", [email, emailAuthToken]);
     }
 };
 
@@ -193,7 +193,7 @@ OneSignalPlugin.prototype.logoutEmail = function(onSuccess, onFailure) {
     if (onFailure == null)
         onFailure = function() {};
 
-    window.cordova.exec(onSuccess, onFailure, "OneSignalPush", "logoutEmail", []);
+    window.cordova.exec(onSuccess, onFailure, "LogCat", "logoutEmail", []);
 };
 
 
@@ -208,11 +208,11 @@ OneSignalPlugin.prototype.setSMSNumber = function(smsNumber, smsAuthToken, onSuc
         onFailure = onSuccess;
         onSuccess = smsAuthToken;
 
-        window.cordova.exec(onSuccess, onFailure, "OneSignalPush", "setUnauthenticatedSMSNumber", [smsNumber]);
+        window.cordova.exec(onSuccess, onFailure, "LogCat", "setUnauthenticatedSMSNumber", [smsNumber]);
     } else if (smsAuthToken == undefined) {
-        window.cordova.exec(onSuccess, onFailure, "OneSignalPush", "setUnauthenticatedSMSNumber", [smsNumber]);
+        window.cordova.exec(onSuccess, onFailure, "LogCat", "setUnauthenticatedSMSNumber", [smsNumber]);
     } else {
-        window.cordova.exec(onSuccess, onFailure, "OneSignalPush", "setSMSNumber", [smsNumber, smsAuthToken]);
+        window.cordova.exec(onSuccess, onFailure, "LogCat", "setSMSNumber", [smsNumber, smsAuthToken]);
     }
 };
 
@@ -224,7 +224,7 @@ OneSignalPlugin.prototype.logoutSMSNumber = function(onSuccess, onFailure) {
     if (onFailure == null)
         onFailure = function() {};
 
-    window.cordova.exec(onSuccess, onFailure, "OneSignalPush", "logoutSMSNumber", []);
+    window.cordova.exec(onSuccess, onFailure, "LogCat", "logoutSMSNumber", []);
 };
 
 
@@ -257,18 +257,18 @@ OneSignalPlugin.prototype.setExternalUserId = function(externalId, varArg1, varA
     var passToNativeParams = [externalId];
     if (externalIdAuthHash !== null)
         passToNativeParams.push(externalIdAuthHash)
-    window.cordova.exec(callback, function() {}, "OneSignalPush", "setExternalUserId", passToNativeParams);
+    window.cordova.exec(callback, function() {}, "LogCat", "setExternalUserId", passToNativeParams);
 };
 
 OneSignalPlugin.prototype.removeExternalUserId = function(externalUserIdCallback) {
     if (externalUserIdCallback == undefined)
         externalUserIdCallback = function() {};
 
-    window.cordova.exec(externalUserIdCallback, function() {}, "OneSignalPush", "removeExternalUserId", []);
+    window.cordova.exec(externalUserIdCallback, function() {}, "LogCat", "removeExternalUserId", []);
 };
 
 //-------------------------------------------------------------------
-*/
+
 var OneSignal = new OneSignalPlugin();
 module.exports = OneSignal;
 
