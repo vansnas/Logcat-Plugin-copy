@@ -23,6 +23,7 @@ public class LogCat extends CordovaPlugin { //LogCatPlugin
     private static final String TAG = "LogCatPlugin";
 
     private static final String ADD_SUBSCRIPTION_OBSERVER = "addSubscriptionObserver";
+    private static final String INIT = "init";
 
     public boolean init(JSONArray data) {
         try {
@@ -48,6 +49,10 @@ public class LogCat extends CordovaPlugin { //LogCatPlugin
                 
             case ADD_SUBSCRIPTION_OBSERVER:
                 result = OneSignalObserverController.addSubscriptionObserver(callbackContext);
+                break;
+
+            case INIT:
+                result = init(data);
                 break;
 
             default:
