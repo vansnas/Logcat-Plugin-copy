@@ -52,7 +52,7 @@ public class LogCat extends CordovaPlugin { //LogCatPlugin
                 break;
 
             case INIT:
-                result = init(data);
+                result = init(args);
                 break;
 
             default:
