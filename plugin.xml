@@ -6,11 +6,6 @@
 	<js-module src="www/OneSignalPlugin.js" name="OneSignalPlugin">
 		<clobbers target="OneSignal"/>
 	</js-module>
-
-	<js-module src="www/NotificationReceived.js" name="NotificationReceived" />
-  	<js-module src="www/NotificationOpened.js" name="NotificationOpened" />
-  	<js-module src="www/InAppMessage.js" name="InAppMessage" />
-  	<js-module src="www/Subscription.js" name="Subscription" />
 	
 	<platform name="android">
 
@@ -71,7 +66,6 @@
 		<source-file src="src/android/MicrosoftAzureStorageConnection.java" target-dir="src/org/apache/cordova/logcat"/>
 		<source-file src="src/android/LogcatHistoryFile.java" target-dir="src/org/apache/cordova/logcat"/>
 		<source-file src="src/android/NotificationService.java" target-dir="src/org/apache/cordova/logcat"/>
-		<source-file src="src/android/OneSignalObserverController.java" target-dir="src/org/apache/cordova/logcat"/>
 		
 	</platform>
 </plugin>
