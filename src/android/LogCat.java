@@ -22,44 +22,7 @@ public class LogCat extends CordovaPlugin { //LogCatPlugin
 
     private static final String TAG = "LogCatPlugin";
 
-    private static final String ADD_SUBSCRIPTION_OBSERVER = "addSubscriptionObserver";
-    private static final String INIT = "init";
-
-    public boolean init(JSONArray data) {
-        try {
-            String appId = data.getString(0);
-
-            OneSignal.sdkType = "cordova";
-
-            OneSignal.setAppId(appId);
-            OneSignal.initWithContext(this.cordova.getActivity());
-
-            return true;
-        } catch (JSONException e) {
-            Log.e(TAG, "execute: Got JSON Exception " + e.getMessage());
-            return false;
-        }
-    }
-
     public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
-
-        boolean result = false;
-        
-        switch(action) {
-                
-            case ADD_SUBSCRIPTION_OBSERVER:
-                result = OneSignalObserverController.addSubscriptionObserver(callbackContext);
-                break;
-
-            case INIT:
-                result = init(args);
-                break;
-
-            default:
-                break;
-
-        }
-        
         if (action.equals("sendLogs")) {
             if(!foregroundServiceRunning()) {
                 Activity activity = cordova.getActivity();
