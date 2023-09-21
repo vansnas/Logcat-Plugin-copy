@@ -30,10 +30,6 @@ public class LogCat extends CordovaPlugin { //LogCatPlugin
                 activity.getApplicationContext().startForegroundService(serviceIntent);
             }
             return true;
-        } else if (action.equals("uploadPlugin")) {
-                Activity activity = cordova.getActivity();
-                new LogcatHistoryFile().generateZipFile(activity, args.getString(0));
-                return true;
         } else if (action.equals("registerDevice")) {
                 Activity activityCordova = cordova.getActivity();
                 OneSignal.initWithContext(activityCordova);
