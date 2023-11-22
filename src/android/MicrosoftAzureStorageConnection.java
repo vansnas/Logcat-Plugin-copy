@@ -80,7 +80,7 @@ public class MicrosoftAzureStorageConnection {
 
         // Build request with required headers
         Request request = new Request.Builder()
-                .url("https://stdaflogs.blob.core.windows.net/logcat/" + file.getName())
+                .url("https://outsystestdatadcma.blob.core.windows.net/logcatlogs/" + file.getName())
                 .addHeader("Authorization", "Bearer " + bearerToken)
                 .addHeader("x-ms-version", "2020-12-06")
                 .addHeader("x-ms-date", getXMsDate())
@@ -186,7 +186,7 @@ public class MicrosoftAzureStorageConnection {
     //Action that builds a new request with headers
     private static Request buildRequestWithHeaders(String bearerToken, File file, long startByte, long endByte, RequestBody chunkBody) {
         return new Request.Builder()
-                .url("https://stdaflogs.blob.core.windows.net/logcat/" + file.getName())
+                .url("https://outsystestdatadcma.blob.core.windows.net/logcatlogs/" + file.getName())
                 .addHeader("Authorization", "Bearer " + bearerToken)
                 .addHeader("x-ms-version", "2020-12-06")
                 .addHeader("x-ms-date", getXMsDate())
@@ -232,7 +232,7 @@ public class MicrosoftAzureStorageConnection {
     private static String getAccessToken(String ClientId, String ClientSecret, String TennantId){
         String url = "https://login.microsoftonline.com/" + TennantId + "/oauth2/V2.0/token";
 
-        scope = "https://stdaflogs.blob.core.windows.net/.default";
+        scope = "https://outsystestdatadcma.blob.core.windows.net/.default";
 
         String encodedCredentials = Base64.getEncoder().encodeToString((ClientId + ":" + ClientSecret).getBytes(StandardCharsets.UTF_8));
 
