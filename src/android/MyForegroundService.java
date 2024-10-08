@@ -4,7 +4,10 @@ import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.Service;
+import android.content.Context;
 import android.content.Intent;
+import android.content.pm.ApplicationInfo;
+import android.os.Build;
 import android.os.IBinder;
 import android.util.Log;
 
@@ -21,23 +24,16 @@ import java.io.PrintWriter;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import android.content.Context;
-import android.content.pm.ApplicationInfo;
-import android.graphics.drawable.Drawable;
 
 public class MyForegroundService extends Service {
 
     private static final String TAG = "Settings and Support App";
     private static final String CHANNELID = "Foreground Service ID";
-    private static final NotificationChannel channel = new NotificationChannel(
-            CHANNELID,
-            CHANNELID,
-            NotificationManager.IMPORTANCE_LOW
-    );
     private Process process = null;
     private BufferedReader reader = null;
     private File logFile = null;
     private BufferedWriter writer = null;
+    private volatile boolean isRunning = true;
 
     @Override
     public void onCreate() {
@@ -45,40 +41,22 @@ public class MyForegroundService extends Service {
             @Override
             public void run() {
                 try {
-                    while (true) {
+                    while (isRunning) {
 
-                        //Checks if the logcat process is alive. If not, will start it and the respective reader
                         if (reader == null || !isProcessAlive(process)) {
                             process = startLogcatProcess();
                             reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
                         }
 
-                        //Create the log file and initializes the writer
                         logFile = generateLogFile();
-                        writer = new BufferedWriter(new FileWriter(logFile));
-
-                        readLinesFromLog();
-
+                        try (BufferedWriter writer = new BufferedWriter(new FileWriter(logFile))) {
+                            readLinesFromLog();
+                        }
                     }
                 } catch (IOException e) {
                     Log.e(TAG, "Error starting logcat process", e);
                 } finally {
-                    if (reader != null) {
-                        try {
-                            reader.close();
-                        } catch (IOException e) {
-                            Log.e(TAG, "Failed to close reader", e);
-                        }
-                        reader = null;
-                    }
-
-                    //read the documentation to close process (include inside if)
-                    //to test, look to the number of threads and check if it increases
-                    if(process != null) {
-                        process.destroy();
-                        process = null;
-                    }
-
+                    cleanupResources();
                 }
             }
         }).start();
@@ -95,16 +73,24 @@ public class MyForegroundService extends Service {
         Context context = getApplicationContext();
         ApplicationInfo applicationInfo = context.getApplicationInfo();
         int appIconResId = applicationInfo.icon;
-        
-        getSystemService(NotificationManager.class).createNotificationChannel(channel);
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            NotificationChannel channel = new NotificationChannel(
+                    CHANNELID,
+                    "Service Channel",
+                    NotificationManager.IMPORTANCE_LOW
+            );
+            getSystemService(NotificationManager.class).createNotificationChannel(channel);
+        }
+
         Notification.Builder notification = new Notification.Builder(this, CHANNELID)
                 .setContentText("Service is running")
                 .setContentTitle("Settings and Support App")
                 .setSmallIcon(appIconResId);
 
         startForeground(1001, notification.build());
-        
-        return super.onStartCommand(intent, flags, startId);
+
+        return START_STICKY;
     }
 
     @Nullable
@@ -113,25 +99,40 @@ public class MyForegroundService extends Service {
         return null;
     }
 
-    //Creates the file name with the current date.
-    //If there is already a file with that name, the filename will include date and time.
+    @Override
+    public void onDestroy() {
+        isRunning = false;
+        cleanupResources();
+        super.onDestroy();
+    }
+
+    private void cleanupResources() {
+        try {
+            if (reader != null) {
+                reader.close();
+            }
+        } catch (IOException e) {
+            Log.e(TAG, "Failed to close reader", e);
+        }
+
+        if (process != null) {
+            process.destroy();
+        }
+    }
+
     public String createFileName() throws IOException {
         String filename = "logcat_" + LocalDate.now() + ".txt";
         File file = new File(getFilesDir(), filename);
 
         if (file.exists()) {
-
             LocalDateTime dateTime = LocalDateTime.now();
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HHmm");
             String formattedDateTime = dateTime.format(formatter);
-
             filename = "logcat_" + formattedDateTime + ".txt";
-
         }
         return filename;
     }
 
-    //Checks if the log file name contains the current date
     private boolean isCurrentLogFile(File logFile) {
         return logFile.getName().contains(LocalDate.now().toString());
     }
@@ -142,7 +143,6 @@ public class MyForegroundService extends Service {
         return new File(getFilesDir(), filename);
     }
 
-    //After every 100 lines, the count of lines written to the log file will be logged.
     public void logNumberOflines(Integer countLines) {
         if (countLines % 100 == 0) {
             Log.i(TAG, countLines + " number of lines written");
@@ -151,67 +151,34 @@ public class MyForegroundService extends Service {
 
     private Process startLogcatProcess() throws IOException {
         return Runtime.getRuntime().exec("logcat");
-        //Report the process id of the process created
     }
 
     private boolean isProcessAlive(Process process) {
         return process != null && process.isAlive();
     }
 
-    //Writes the log to the file
-    private void writeLineToLog(String line) {
-        try {
-            writer.write(line);
-            writer.newLine();
-        } catch (IOException e) { //close the writer and set it to null
-            Log.e(TAG, "Failed to write line to log: " + line, e);
-        }
-    }
-
-    //Reads the lines from the logcat and write it down to the respective log file
-    private void readLinesFromLog(){
-
+    private void readLinesFromLog() throws IOException {
         String line;
         int countLines = 0;
 
         try {
-
-            //Verifies if the line has a log
             while ((line = reader.readLine()) != null) {
-
-                //what happen when read line returns null? (line 63)
-
-                //Checks if the log file is the required one.
-                //If it's not the same day, closes the current writer, creates a new log file and initializes a new writer
                 if (!isCurrentLogFile(logFile)) {
                     writer.close();
-                    writer = null;
                     logFile = generateLogFile();
                     writer = new BufferedWriter(new FileWriter(logFile));
                     Log.i(TAG, "New Logfile Created");
                 }
 
-                //what happen when writer fails? (line 77)
-                writeLineToLog(line);
+                writer.write(line);
+                writer.newLine();
                 writer.flush();
 
-                countLines += 1;
+                countLines++;
                 logNumberOflines(countLines);
             }
-
         } catch (IOException e) {
             Log.e(TAG, "Failed to read logcat or write to file", e);
-        } finally {
-            if (writer != null) {
-                try {
-                    writer.close();
-                } catch (IOException e) {
-                    Log.e(TAG, "Failed to close writer", e);
-                }
-                writer = null;
-            }
         }
     }
-
 }
-
