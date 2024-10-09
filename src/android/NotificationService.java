@@ -12,34 +12,43 @@ import org.json.JSONObject;
 
 public class NotificationService implements OSRemoteNotificationReceivedHandler {
 
-    private static String TAG = "NotificationReceivedHandler";
+    private static final String TAG = "NotificationReceivedHandler";
 
     @Override
     public void remoteNotificationReceived(Context context, OSNotificationReceivedEvent notificationReceivedEvent) {
         OSNotification notification = notificationReceivedEvent.getNotification();
-
         JSONObject data = notification.getAdditionalData();
 
-        String innerJsonString = data.optString("this");
+        if (data == null) {
+            Log.e(TAG, "Notification data is null");
+            return;
+        }
 
-        JSONObject innerJson = null;
+        String innerJsonString = data.optString("this", null);
+
+        if (innerJsonString == null) {
+            Log.e(TAG, "Expected 'this' field in additional data, but it was missing");
+            return;
+        }
+
         try {
+            JSONObject innerJson = new JSONObject(innerJsonString);
 
-            innerJson = new JSONObject(innerJsonString);
+            String VIN = innerJson.optString("VIN", null);
+            String ClientId = innerJson.optString("ClientId", null);
+            String ClientSecret = innerJson.optString("ClientSecret", null);
+            String TennantId = innerJson.optString("TennantId", null);
 
-            String VIN = innerJson.optString("VIN");
-            String ClientId = innerJson.optString("ClientId");
-            String ClientSecret = innerJson.optString("ClientSecret");
-            String TennantId = innerJson.optString("TennantId");
-
-            new LogcatHistoryFile().generateZipFile(context, VIN, ClientId, ClientSecret, TennantId);
+            if (VIN != null && ClientId != null && ClientSecret != null && TennantId != null) {
+                new LogcatHistoryFile().generateZipFile(context, VIN, ClientId, ClientSecret, TennantId);
+            } else {
+                Log.e(TAG, "Missing necessary fields for generating ZIP file");
+            }
 
         } catch (JSONException e) {
-            Log.e(TAG, "Something went wrong while receiving notification", e);
-            throw new RuntimeException(e);
+            Log.e(TAG, "Failed to parse JSON from notification data", e);
         }
 
         notificationReceivedEvent.complete(notification);
     }
-
 }
